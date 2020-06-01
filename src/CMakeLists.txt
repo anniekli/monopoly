@@ -19,7 +19,7 @@ ci_make_library(
         CINDER_PATH  ${CINDER_PATH}
         SOURCES      ${SOURCE_LIST}
         INCLUDES     "${Monopoly_SOURCE_DIR}/include"
-        LIBRARIES
+        LIBRARIES    sqlite-modern-cpp sqlite3 gflags nlohmann_json
         BLOCKS
 )
 

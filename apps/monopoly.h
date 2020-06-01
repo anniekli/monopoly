@@ -4,7 +4,11 @@
 #define MONOPOLY_MONOPOLY_H_
 
 #include <cinder/app/App.h>
+#include <nlohmann/json.hpp>
 
+using std::vector;
+using std::string;
+using json = nlohmann::json;
 
 namespace monopoly {
 

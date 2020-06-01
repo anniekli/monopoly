@@ -1,7 +1,6 @@
 // Copyright (c) 2020 Annie Li. All rights reserved.
 
 #include "monopoly.h"
-
 #include <cinder/app/App.h>
 
 
