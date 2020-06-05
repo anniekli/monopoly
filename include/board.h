@@ -7,9 +7,9 @@
 
 #include "tile.h"
 #include <string>
-#include <vector>
 #include <nlohmann/json.hpp>
 #include <fstream>
+#include <vector>
 
 namespace monopoly {
 
@@ -24,7 +24,7 @@ public:
   
   Tile GetTile();
   void GetChanceCard();
-  std::vector<Tile> GetProperties();
+  std::vector<Tile> GetTiles();
 
 private:
   std::ifstream infile;

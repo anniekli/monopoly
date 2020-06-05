@@ -15,7 +15,7 @@ namespace monopoly {
   DEFINE_string(file, "classic-board.json", "the filepath of the json file "
                                       "containing checkpoints");
   DEFINE_bool(collect_go, true, "whether to collect $200 when passing go");
-  DEFINE_uint32(num_cpu, 1, "the number of computer players");
+  DEFINE_uint32(num_cpu, 1, "the number of computer players, from 1-3");
   
   
   void ParseArgs(vector<string>* args) {
@@ -33,8 +33,8 @@ namespace monopoly {
   }
 
 const int kSamples = 8;
-const int kWidth = 800;
-const int kHeight = 800;
+const int kWidth = 1000;
+const int kHeight = 1000;
 
 void SetUp(App::Settings* settings) {
   vector<string> args = settings->getCommandLineArgs();
