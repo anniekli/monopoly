@@ -1,8 +1,8 @@
 {
-  "properties": [
+  "tiles": [
     {
       "name": "Mediterranean Avenue",
-      "position": 2,
+      "position": 1,
       "price": 60,
       "rent": [
         2,
@@ -17,7 +17,7 @@
     },
     {
       "name": "Baltic Avenue",
-      "position": 4,
+      "position": 3,
       "price": 60,
       "rent": [
         4,
@@ -32,7 +32,7 @@
     },
     {
       "name": "Oriental Avenue",
-      "position": 7,
+      "position": 6,
       "price": 100,
       "rent": [
         6,
@@ -47,7 +47,7 @@
     },
     {
       "name": "Vermont Avenue",
-      "position": 9,
+      "position": 8,
       "price": 100,
       "rent": [
         6,
@@ -62,7 +62,7 @@
     },
     {
       "name": "Connecticut Avenue",
-      "position": 10,
+      "position": 9,
       "price": 120,
       "rent": [
         8,
@@ -77,7 +77,7 @@
     },
     {
       "name": "St. Charles Place",
-      "position": 12,
+      "position": 11,
       "price": 140,
       "rent": [
         10,
@@ -92,7 +92,7 @@
     },
     {
       "name": "States Avenue",
-      "position": 14,
+      "position": 13,
       "price": 140,
       "rent": [
         10,
@@ -107,7 +107,7 @@
     },
     {
       "name": "Virginia Avenue",
-      "position": 15,
+      "position": 14,
       "price": 160,
       "rent": [
         12,
@@ -122,7 +122,7 @@
     },
     {
       "name": "St. James Place",
-      "position": 17,
+      "position": 16,
       "price": 180,
       "rent": [
         14,
@@ -137,7 +137,7 @@
     },
     {
       "name": "Tennessee Avenue",
-      "position": 19,
+      "position": 18,
       "price": 180,
       "rent": [
         14,
@@ -152,7 +152,7 @@
     },
     {
       "name": "New York Avenue",
-      "position": 20,
+      "position": 19,
       "price": 200,
       "rent": [
         16,
@@ -167,7 +167,7 @@
     },
     {
       "name": "Kentucky Avenue",
-      "position": 22,
+      "position": 21,
       "price": 220,
       "rent": [
         18,
@@ -182,7 +182,7 @@
     },
     {
       "name": "Indiana Avenue",
-      "position": 24,
+      "position": 23,
       "price": 220,
       "rent": [
         18,
@@ -197,7 +197,7 @@
     },
     {
       "name": "Illinois Avenue",
-      "position": 25,
+      "position": 24,
       "price": 240,
       "rent": [
         20,
@@ -212,7 +212,7 @@
     },
     {
       "name": "Atlantic Avenue",
-      "position": 27,
+      "position": 26,
       "price": 260,
       "rent": [
         22,
@@ -227,7 +227,7 @@
     },
     {
       "name": "Ventnor Avenue",
-      "position": 28,
+      "position": 27,
       "price": 260,
       "rent": [
         22,
@@ -242,7 +242,7 @@
     },
     {
       "name": "Marvin Gardens",
-      "position": 30,
+      "position": 29,
       "price": 280,
       "rent": [
         22,
@@ -257,7 +257,7 @@
     },
     {
       "name": "Pacific Avenue",
-      "position": 32,
+      "position": 31,
       "price": 300,
       "rent": [
         26,
@@ -272,7 +272,7 @@
     },
     {
       "name": "North Carolina Avenue",
-      "position": 33,
+      "position": 32,
       "price": 300,
       "rent": [
         26,
@@ -287,7 +287,7 @@
     },
     {
       "name": "Pennsylvania Avenue",
-      "position": 35,
+      "position": 34,
       "price": 320,
       "rent": [
         28,
@@ -302,7 +302,7 @@
     },
     {
       "name": "Park Place",
-      "position": 38,
+      "position": 37,
       "price": 350,
       "rent": [
         35,
@@ -317,7 +317,7 @@
     },
     {
       "name": "Boardwalk",
-      "position": 40,
+      "position": 39,
       "price": 400,
       "rent": [
         50,
@@ -332,38 +332,62 @@
     },
     {
       "name": "Electric Company",
-      "position": 13,
+      "position": 12,
       "price": 150,
       "group": "Utilities"
     },
     {
       "name": "Water Works",
-      "position": 29,
+      "position": 28,
       "price": 150,
       "group": "Utilities"
     },
     {
       "name": "Reading Railroad",
-      "position": 6,
+      "position": 5,
       "price": 200,
+      "rent": [
+        25,
+        50,
+        100,
+        200
+      ],
       "group": "Railroad"
     },
     {
       "name": "Pennsylvania Railroad",
-      "position": 16,
+      "position": 15,
       "price": 200,
+      "rent": [
+        25,
+        50,
+        100,
+        200
+      ],
       "group": "Railroad"
     },
     {
       "name": "B. & O. Railroad",
-      "position": 26,
+      "position": 25,
       "price": 200,
+      "rent": [
+        25,
+        50,
+        100,
+        200
+      ],
       "group": "Railroad"
     },
     {
       "name": "Short Line Railroad",
-      "position": 36,
+      "position": 35,
       "price": 200,
+      "rent": [
+        25,
+        50,
+        100,
+        200
+      ],
       "group": "Railroad"
     },
     {
@@ -373,6 +397,7 @@
     },
     {
       "name": "Income Tax",
+      "position": 4,
       "group": "Special"
     },
     {
@@ -382,26 +407,41 @@
     },
     {
       "name": "Chance",
+      "position": 7,
+      "group": "Special"
+    },
+    {
+      "name": "Chance",
+      "position": 22,
+      "group": "Special"
+    },
+    {
+      "name": "Chance",
+      "position": 36,
       "group": "Special"
     },
     {
       "name": "Free Parking",
+      "position": 20,
       "group": "Special"
     },
     {
       "name": "Community Chest",
+      "position": 2,
       "group": "Special"
     },
     {
       "name": "Go To Jail",
+      "position": 30,
       "group": "Special"
     },
     {
       "name": "Luxury Tax",
+      "position": 38,
       "group": "Special"
     }
   ],
-  "tiles": [
+  "ids": [
     {"id": "go"},
     {"id": "mediterraneanave"},
     {"id": "communitychest"},

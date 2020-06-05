@@ -5,14 +5,33 @@
 #ifndef MONOPOLY_BOARD_H
 #define MONOPOLY_BOARD_H
 
+#include "tile.h"
+#include <string>
+#include <vector>
+#include <nlohmann/json.hpp>
+#include <fstream>
+
+namespace monopoly {
+
+using std::string;
+using json = nlohmann::json;
 
 class Board {
+
+public:
   Board(){};
   Board(std::string &filepath);
   
-  GetTile();
-  GetChanceCard();
+  Tile GetTile();
+  void GetChanceCard();
+  std::vector<Tile> GetProperties();
+
+private:
+  std::ifstream infile;
+  json j;
+  std::vector<Tile> tiles;
 };
+}
 
 
 #endif //MONOPOLY_BOARD_H
