@@ -5,25 +5,28 @@
 #include "property.h"
 
 namespace monopoly {
-  const int Property::GetRent() {
+  int Property::GetRent() const {
     return rent_[num_houses_];
   }
   
-  void Property::BuyHouse() {
+  bool Property::BuyHouse() {
     if (num_houses_ > 5) {
       num_houses_ += 1;
+      return true;
     }
+    return false;
   }
   
-  const int Property::GetNumHouses() {
+  int Property::GetNumHouses() const {
     return num_houses_;
   }
   
-  const int Property::GetPrice() {
-    return price_;
-  }
-  
-  const int Property::GetHouseCost() {
+  int Property::GetHouseCost() const {
     return house_cost_;
   }
+  
+  Color Property::GetColor() const {
+    return Color(rgb_[0] / 255.0f, rgb_[1] / 255.0f, rgb_[2] / 255.0f);
+  }
+  
 }

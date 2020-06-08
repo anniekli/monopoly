@@ -11,23 +11,27 @@ namespace monopoly {
 
 class Tile {
   public:
-    Tile(){};
+//    Tile(){};
     
-    Tile(const std::string &name, int position, const std::string &group)
-            : name_(name), position_(position), group_(group) {};
+    Tile(const std::string &name, const int position, const int price,
+            const std::string &group)
+            : name_(name), position_(position), price_(price), group_(group) {};
     
-    std::string GetName() { return name_; };
+    std::string GetName() const { return name_; };
     
-    std::string GetGroup() { return group_; };
+    std::string GetGroup() const { return group_; };
     
-    int GetPosition() { return position_; };
+    int GetPosition() const { return position_; };
+    
+    int GetPrice() const { return price_; };
     
     // find some way to return group type as an object...look into inheritance
   
   private:
-    std::string name_;
-    int position_;
-    std::string group_;
+    const std::string name_;
+    const int position_;
+    const int price_;
+    const std::string group_;
     
   };
 }

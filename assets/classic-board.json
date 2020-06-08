@@ -13,7 +13,8 @@
         250
       ],
       "housecost": 50,
-      "group": "purple"
+      "group": "purple",
+      "rgb": [75, 0, 130]
     },
     {
       "name": "Baltic Avenue",
@@ -28,7 +29,8 @@
         450
       ],
       "housecost": 50,
-      "group": "purple"
+      "group": "purple",
+      "rgb": [75, 0, 130]
     },
     {
       "name": "Oriental Avenue",
@@ -43,7 +45,8 @@
         550
       ],
       "housecost": 50,
-      "group": "lightblue"
+      "group": "lightblue",
+      "rgb": [135, 206, 250]
     },
     {
       "name": "Vermont Avenue",
@@ -58,7 +61,8 @@
         550
       ],
       "housecost": 50,
-      "group": "lightblue"
+      "group": "lightblue",
+      "rgb": [135, 206, 250]
     },
     {
       "name": "Connecticut Avenue",
@@ -73,7 +77,8 @@
         600
       ],
       "housecost": 50,
-      "group": "lightblue"
+      "group": "lightblue",
+      "rgb": [135, 206, 250]
     },
     {
       "name": "St. Charles Place",
@@ -88,7 +93,8 @@
         750
       ],
       "housecost": 100,
-      "group": "pink"
+      "group": "pink",
+      "rgb": [255, 20, 147]
     },
     {
       "name": "States Avenue",
@@ -103,7 +109,8 @@
         750
       ],
       "housecost": 100,
-      "group": "pink"
+      "group": "pink",
+      "rgb": [255, 20, 147]
     },
     {
       "name": "Virginia Avenue",
@@ -118,7 +125,8 @@
         900
       ],
       "housecost": 100,
-      "group": "pink"
+      "group": "pink",
+      "rgb": [255, 20, 147]
     },
     {
       "name": "St. James Place",
@@ -133,7 +141,8 @@
         950
       ],
       "housecost": 100,
-      "group": "orange"
+      "group": "orange",
+      "rgb": [255, 165, 0]
     },
     {
       "name": "Tennessee Avenue",
@@ -148,7 +157,8 @@
         950
       ],
       "housecost": 100,
-      "group": "orange"
+      "group": "orange",
+      "rgb": [255, 165, 0]
     },
     {
       "name": "New York Avenue",
@@ -163,7 +173,8 @@
         1000
       ],
       "housecost": 100,
-      "group": "orange"
+      "group": "orange",
+      "rgb": [255, 165, 0]
     },
     {
       "name": "Kentucky Avenue",
@@ -178,7 +189,8 @@
         1050
       ],
       "housecost": 150,
-      "group": "red"
+      "group": "red",
+      "rgb": [255, 0, 0]
     },
     {
       "name": "Indiana Avenue",
@@ -193,7 +205,8 @@
         1050
       ],
       "housecost": 150,
-      "group": "red"
+      "group": "red",
+      "rgb": [255, 0, 0]
     },
     {
       "name": "Illinois Avenue",
@@ -208,7 +221,8 @@
         1100
       ],
       "housecost": 150,
-      "group": "red"
+      "group": "red",
+      "rgb": [255, 0, 0]
     },
     {
       "name": "Atlantic Avenue",
@@ -223,7 +237,8 @@
         1150
       ],
       "housecost": 150,
-      "group": "yellow"
+      "group": "yellow",
+      "rgb": [255, 255, 0]
     },
     {
       "name": "Ventnor Avenue",
@@ -238,7 +253,8 @@
         1150
       ],
       "housecost": 150,
-      "group": "yellow"
+      "group": "yellow",
+      "rgb": [255, 255, 0]
     },
     {
       "name": "Marvin Gardens",
@@ -253,7 +269,8 @@
         1200
       ],
       "housecost": 150,
-      "group": "yellow"
+      "group": "yellow",
+      "rgb": [255, 255, 0]
     },
     {
       "name": "Pacific Avenue",
@@ -268,7 +285,8 @@
         1275
       ],
       "housecost": 200,
-      "group": "green"
+      "group": "green",
+      "rgb": [0, 128, 0]
     },
     {
       "name": "North Carolina Avenue",
@@ -283,7 +301,8 @@
         1275
       ],
       "housecost": 200,
-      "group": "green"
+      "group": "green",
+      "rgb": [0, 128, 0]
     },
     {
       "name": "Pennsylvania Avenue",
@@ -298,7 +317,8 @@
         1400
       ],
       "housecost": 200,
-      "group": "green"
+      "group": "green",
+      "rgb": [0, 128, 0]
     },
     {
       "name": "Park Place",
@@ -313,7 +333,8 @@
         1500
       ],
       "housecost": 200,
-      "group": "darkblue"
+      "group": "darkblue",
+      "rgb": [0, 0, 139]
     },
     {
       "name": "Boardwalk",
@@ -328,19 +349,20 @@
         2000
       ],
       "housecost": 200,
-      "group": "darkblue"
+      "group": "darkblue",
+      "rgb": [0, 0, 139]
     },
     {
       "name": "Electric Company",
       "position": 12,
       "price": 150,
-      "group": "Utilities"
+      "group": "Utility"
     },
     {
       "name": "Water Works",
       "position": 28,
       "price": 150,
-      "group": "Utilities"
+      "group": "Utility"
     },
     {
       "name": "Reading Railroad",
