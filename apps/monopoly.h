@@ -6,6 +6,7 @@
 #include <cinder/app/App.h>
 #include <nlohmann/json.hpp>
 #include <board.h>
+#include "player.h"
 
 using std::vector;
 using std::string;
@@ -13,6 +14,12 @@ using json = nlohmann::json;
 using cinder::Color;
 
 namespace monopoly {
+
+enum class GameState {
+  kStart,
+  kPlaying,
+  kGameOver,
+};
 
 class Monopoly : public cinder::app::App {
  public:
@@ -26,8 +33,10 @@ private:
   void DrawBoard();
   
   Board board_;
+  Player player_;
+  GameState state_;
   
-  float tile_size = getWindowWidth() / 15;
+  float tile_size_ = getWindowWidth() / 13;
   Color background_color = Color(191/255.0f, 219/255.0f, 174/255.0f);
 };
 }  // namespace monopoly

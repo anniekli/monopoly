@@ -33,8 +33,8 @@ namespace monopoly {
   }
 
 const int kSamples = 8;
-const int kWidth = 1000;
-const int kHeight = 1000;
+const int kWidth = 1001;
+const int kHeight = 1001;
 
 void SetUp(App::Settings* settings) {
   vector<string> args = settings->getCommandLineArgs();
