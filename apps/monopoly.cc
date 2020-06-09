@@ -90,7 +90,7 @@ void Monopoly::DrawBoard() {
   
     float position = tile->GetPosition();
     
-    // draw tile outlines
+    // draw tile outlines for each side of board
     if (position > 0 && position < 10) {
       
       rectf = Rectf(width - (tile_size_ * (position + 2)),
@@ -103,8 +103,8 @@ void Monopoly::DrawBoard() {
     } else if (position > 10 && position < 20) {
       
       float new_pos = position - 10;
-      rectf = Rectf(0, tile_size_ * (new_pos + 2),
-                    tile_size_ * 2, tile_size_ * (new_pos + 1));
+      rectf = Rectf(0, height - (tile_size_ * (new_pos + 2)),
+                    tile_size_ * 2, height - (tile_size_ * (new_pos + 1)));
   
       size = {2 * tile_size_, tile_size_};
   
@@ -124,16 +124,35 @@ void Monopoly::DrawBoard() {
                     width, tile_size_ * (new_pos + 2));
   
       size = {2 * tile_size_, tile_size_};
+    
+    } else {
+      size = {2 * tile_size_, 2 * tile_size_};
   
+      if (position == 0) {
+        rectf = Rectf(width - (tile_size_ * 2), height - (tile_size_ * 2),
+                width, height);
+        
+      } else if (position == 10) {
+        rectf = Rectf(0, height - (tile_size_ * 2),tile_size_ * 2, height);
+        
+      } else if (position == 20) {
+        rectf = Rectf(0, 0, tile_size_ * 2, tile_size_ * 2);
+        
+      } else if (position == 30) {
+        rectf = Rectf(width - (tile_size_ * 2), 0,
+                      width, tile_size_ * 2);
+      }
     }
   
     cinder::gl::color(Color::black());
     cinder::gl::drawStrokedRect(rectf);
     std::stringstream ss;
     ss << tile->GetName() << std::endl;
+
     if (tile->GetGroup() != "Special") {
       ss << "\n" << "$" << tile->GetPrice();
     }
+    
     PrintText(ss.str(), Color::black(), size, rectf.getCenter());
     
     if (tile->GetGroup() != "Special"
