@@ -80,8 +80,6 @@ void PrintText(const string& text, const C& color, const cinder::ivec2& size,
 
 
 void Monopoly::DrawBoard() {
-  cinder::gl::color(Color::black());
-  const Color color = Color::black();
   const float width = getWindowWidth();
   const float height = getWindowHeight();
   
@@ -90,8 +88,9 @@ void Monopoly::DrawBoard() {
     Rectf rectf;
     cinder::ivec2 size;
   
-    float position = tile.GetPosition();
+    float position = tile->GetPosition();
     
+    // draw tile outlines
     if (position > 0 && position < 10) {
       
       rectf = Rectf(width - (tile_size_ * (position + 2)),
@@ -127,14 +126,42 @@ void Monopoly::DrawBoard() {
       size = {2 * tile_size_, tile_size_};
   
     }
-    
+  
+    cinder::gl::color(Color::black());
     cinder::gl::drawStrokedRect(rectf);
     std::stringstream ss;
-    ss << tile.GetName() << std::endl;
-    if (tile.GetGroup() != "Special") {
-      ss << "\n" << "$" << tile.GetPrice();
+    ss << tile->GetName() << std::endl;
+    if (tile->GetGroup() != "Special") {
+      ss << "\n" << "$" << tile->GetPrice();
     }
-    PrintText(ss.str(), color, size, rectf.getCenter());
+    PrintText(ss.str(), Color::black(), size, rectf.getCenter());
+    
+    if (tile->GetGroup() != "Special"
+        && tile->GetGroup() != "Utility"
+        && tile->GetGroup() != "Railroad") {
+      Property *property = dynamic_cast<Property*>(tile);
+      Rectf color_rectf;
+  
+      if (position < 10) {
+        color_rectf = Rectf(rectf.x1, rectf.y1, rectf.x2, rectf.y1 +
+                (tile_size_ / 3));
+        
+      } else if (position > 10 && position < 20) {
+        color_rectf = Rectf(rectf.x2 - (tile_size_ / 3),
+                rectf.y1, rectf.x2, rectf.y2);
+        
+      } else if (position > 20 && position < 30) {
+        color_rectf = Rectf(rectf.x1, rectf.y2 - (tile_size_ / 3), rectf.x2,
+                rectf.y2);
+        
+      } else {
+        color_rectf = Rectf(rectf.x1, rectf.y1, rectf.x1 + (tile_size_ / 3),
+                rectf.y2);
+      }
+      
+      cinder::gl::color(property->GetColor());
+      cinder::gl::drawSolidRect(color_rectf);
+    }
   
   
   }

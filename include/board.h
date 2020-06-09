@@ -24,12 +24,12 @@ public:
   
   Tile GetTile();
   void GetChanceCard();
-  std::vector<Tile> GetTiles();
+  std::vector<Tile*> GetTiles();
 
 private:
   std::ifstream infile;
   json j;
-  std::vector<Tile> tiles;
+  std::vector<Tile*> tiles;
 };
 }
 

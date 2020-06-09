@@ -26,7 +26,16 @@ namespace monopoly {
   }
   
   Color Property::GetColor() const {
-    return Color(rgb_[0] / 255.0f, rgb_[1] / 255.0f, rgb_[2] / 255.0f);
+    float rgb_temp[3];
+    
+    for (int i = 0; i < 3; i++) {
+      if (rgb_[i] == 0) {
+        rgb_temp[i] = 0;
+      } else {
+        rgb_temp[i] = rgb_[i] / 255.0f;
+      }
+    }
+    return Color(rgb_temp[0], rgb_temp[1], rgb_temp[2]);
   }
   
 }

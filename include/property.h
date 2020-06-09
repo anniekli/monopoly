@@ -14,10 +14,20 @@ using cinder::Color;
 
 class Property: public Tile {
 public:
-  Property(const std::string &name, int position, int price, const int
-    (&rent)[6], int house_cost, const std::string &group, const int (&rgb)[3])
-          : Tile{name, position, price, group}, rent_(rent),
-          house_cost_(house_cost), rgb_(rgb), num_houses_{0} {}
+  Property(const std::string &name, int position, int price, int rent[], int
+  house_cost, const std::string &group, int rgb[])
+          : Tile{name, position, price, group}, house_cost_(house_cost),
+          num_houses_{0} {
+    
+    // manually copy in the arrays
+    for (int i = 0; i < 6; i++) {
+      rent_[i] = rent[i];
+      
+      if (i < 3) {
+        rgb_[i] = rgb[i];
+      }
+    }
+  }
   
   int GetRent() const;
   int GetHouseCost() const;
@@ -27,8 +37,8 @@ public:
   
 
 private:
-  const int (&rent_)[6];
-  const int (&rgb_)[3];
+  int rent_[6];
+  int rgb_[3];
   const int house_cost_;
   int num_houses_;
   

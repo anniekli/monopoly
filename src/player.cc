@@ -3,3 +3,9 @@
 //
 
 #include "player.h"
+
+namespace monopoly {
+  int Player::GetMoney() {
+    return money_;
+  }
+}

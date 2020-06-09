@@ -26,7 +26,7 @@ namespace monopoly {
           my_tile = new Utility(tile["name"], tile["position"],
                   tile["price"], tile["group"]);
           
-          tiles.push_back(*my_tile);
+          tiles.push_back(my_tile);
   
         } else {
           
@@ -44,14 +44,14 @@ namespace monopoly {
           my_tile = new Property(tile["name"], tile["position"],
                   tile["price"], rent, tile["housecost"],
                   tile["group"], rgb);
-          tiles.push_back(*my_tile);
+          tiles.push_back(my_tile);
   
         }
       }
     }
   }
   
-  std::vector<Tile> Board::GetTiles() {
+  std::vector<Tile*> Board::GetTiles() {
     return tiles;
   }
 }

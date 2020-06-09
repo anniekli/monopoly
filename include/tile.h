@@ -6,6 +6,7 @@
 #define MONOPOLY_TILE_H
 
 #include <string>
+#include <utility>
 
 namespace monopoly {
 
@@ -13,9 +14,10 @@ class Tile {
   public:
 //    Tile(){};
     
-    Tile(const std::string &name, const int position, const int price,
-            const std::string &group)
-            : name_(name), position_(position), price_(price), group_(group) {};
+    Tile(std::string name, const int position, const int price,
+            std::string group)
+            : name_(std::move(name)), position_(position), price_(price),
+            group_(std::move(group)) {};
     
     std::string GetName() const { return name_; };
     
@@ -23,7 +25,7 @@ class Tile {
     
     int GetPosition() const { return position_; };
     
-    int GetPrice() const { return price_; };
+    virtual int GetPrice() const { return price_; };
     
     // find some way to return group type as an object...look into inheritance
   
