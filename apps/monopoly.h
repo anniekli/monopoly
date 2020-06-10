@@ -6,6 +6,7 @@
 #include <cinder/app/App.h>
 #include <nlohmann/json.hpp>
 #include <board.h>
+#include <cinder/gl/Texture.h>
 #include "player.h"
 
 using std::vector;
@@ -35,6 +36,21 @@ private:
   Board board_;
   Player player_;
   GameState state_;
+  
+  std::string special = "Special";
+  std::string utility = "Utility";
+  std::string railroad = "Railroad";
+  std::string chance = "Chance";
+  std::string chest = "Community Chest";
+  std::string water = "Water Works";
+  std::string electricity = "Electric Company";
+  
+  cinder::gl::Texture2dRef railroad_img;
+  cinder::gl::Texture2dRef electric_img;
+  cinder::gl::Texture2dRef water_img;
+  cinder::gl::Texture2dRef chance_img;
+  cinder::gl::Texture2dRef chest_img;
+  
   
   float tile_size_ = getWindowWidth() / 13;
   Color background_color = Color(191/255.0f, 219/255.0f, 174/255.0f);

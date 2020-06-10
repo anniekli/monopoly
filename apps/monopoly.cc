@@ -43,7 +43,18 @@ Monopoly::Monopoly()
 {}
 
 void Monopoly::setup() {
-
+  
+  // create tile images
+  railroad_img = cinder::gl::Texture2d::create
+          (loadImage(loadAsset("railroad.png")));
+  electric_img = cinder::gl::Texture2d::create
+          (loadImage(loadAsset("electric.png")));
+  water_img = cinder::gl::Texture2d::create
+          (loadImage(loadAsset("water.png")));
+  chance_img = cinder::gl::Texture2d::create
+          (loadImage(loadAsset("chance.png")));
+  chest_img = cinder::gl::Texture2d::create
+          (loadImage(loadAsset("community-chest.png")));
 }
 
 void Monopoly::update() {
@@ -54,7 +65,6 @@ void Monopoly::update() {
 }
 
 void Monopoly::draw() {
-  cinder::gl::clear(background_color);
   DrawBoard();
   
 }
@@ -66,7 +76,7 @@ void PrintText(const string& text, const C& color, const cinder::ivec2& size,
   
   auto box = TextBox()
           .alignment(TextBox::CENTER)
-          .font(cinder::Font(kNormalFont, 15))
+          .font(cinder::Font(kNormalFont, 18))
           .size(size)
           .color(color)
           .text(text);
@@ -80,6 +90,11 @@ void PrintText(const string& text, const C& color, const cinder::ivec2& size,
 
 
 void Monopoly::DrawBoard() {
+  cinder::gl::clear(background_color);
+  cinder::gl::disableDepthRead();
+  cinder::gl::disableDepthWrite();
+  cinder::gl::enableAlphaBlending();
+  
   const float width = getWindowWidth();
   const float height = getWindowHeight();
   
@@ -95,9 +110,7 @@ void Monopoly::DrawBoard() {
       
       rectf = Rectf(width - (tile_size_ * (position + 2)),
               height - (tile_size_ * 2),
-              width - ((position + 1) * tile_size_),
-              height);
-      
+              width - ((position + 1) * tile_size_), height);
       size = {tile_size_, 2 * tile_size_};
       
     } else if (position > 10 && position < 20) {
@@ -105,27 +118,25 @@ void Monopoly::DrawBoard() {
       float new_pos = position - 10;
       rectf = Rectf(0, height - (tile_size_ * (new_pos + 2)),
                     tile_size_ * 2, height - (tile_size_ * (new_pos + 1)));
-  
       size = {2 * tile_size_, tile_size_};
-  
-  
+      
     } else if (position > 20 && position < 30) {
   
       float new_pos = position - 20;
       rectf = Rectf(tile_size_ * (new_pos + 1), 0,
                     tile_size_ * (new_pos + 2), tile_size_ * 2);
-  
       size = {tile_size_, 2 * tile_size_};
   
     } else if (position > 30) {
+      
       float new_pos = position - 30;
       rectf = Rectf(width - (tile_size_ * 2),
                     tile_size_ * (new_pos + 1),
                     width, tile_size_ * (new_pos + 2));
-  
       size = {2 * tile_size_, tile_size_};
     
     } else {
+      // corners are squares
       size = {2 * tile_size_, 2 * tile_size_};
   
       if (position == 0) {
@@ -143,46 +154,99 @@ void Monopoly::DrawBoard() {
                       width, tile_size_ * 2);
       }
     }
-  
     cinder::gl::color(Color::black());
     cinder::gl::drawStrokedRect(rectf);
+    
+    // get name and price for corresponding tiles
     std::stringstream ss;
     ss << tile->GetName() << std::endl;
-
-    if (tile->GetGroup() != "Special") {
-      ss << "\n" << "$" << tile->GetPrice();
-    }
+  
+    std::stringstream price_ss;
+    price_ss << "$" << tile->GetPrice();
+  
+    Rectf image_coord = {rectf.getCenter().x - (tile_size_ / 4),
+                         rectf.getCenter().y - (tile_size_ / 4),
+                         rectf.getCenter().x + (tile_size_ / 4),
+                         rectf.getCenter().y + (tile_size_ / 4)};
     
-    PrintText(ss.str(), Color::black(), size, rectf.getCenter());
-    
-    if (tile->GetGroup() != "Special"
-        && tile->GetGroup() != "Utility"
-        && tile->GetGroup() != "Railroad") {
+    // draw image on railroad, utility, and special tiles
+    // only railroad and utility have prices
+    if (tile->GetGroup() == railroad || tile->GetGroup() == utility) {
+      if (tile->GetGroup() == railroad) {
+        cinder::gl::draw(railroad_img, image_coord);
+        
+      } else if (tile->GetName() == electricity) {
+        cinder::gl::draw(electric_img, image_coord);
+        
+      } else {
+        // this is water works
+        cinder::gl::draw(water_img, image_coord);
+      }
+      
+      //railroads and utility have prices, so print name and price around the
+      // image
+      if ((position > 10 && position < 20) || (position > 30)) {
+        PrintText(ss.str(), Color::black(), size,
+                {rectf.getCenter().x,rectf.getCenter().y - (tile_size_ / 3)});
+        PrintText(price_ss.str(), Color::black(), size,
+                {rectf.getCenter().x,rectf.getCenter().y + (tile_size_ / 3)});
+      } else {
+        PrintText(ss.str(), Color::black(), size,
+                {rectf.getCenter().x, rectf.getCenter().y - (tile_size_ / 2)});
+        PrintText(price_ss.str(), Color::black(), size,
+                {rectf.getCenter().x, rectf.getCenter().y + (tile_size_ / 2)});
+      }
+      
+      // if special tile, there is no price, so only print the name
+    } else if (tile->GetGroup() == special) {
+      if (tile->GetName() == chance) {
+        cinder::gl::draw(chance_img, image_coord);
+      
+      } else if (tile->GetName() == chest) {
+        cinder::gl::draw(chest_img, image_coord);
+      
+      }
+  
+      if ((position > 10 && position < 20) || (position > 30)) {
+        PrintText(ss.str(), Color::black(), size,
+                {rectf.getCenter().x, rectf.getCenter().y - (tile_size_ / 3)});
+      } else {
+        PrintText(ss.str(), Color::black(), size,
+                  {rectf.getCenter().x, rectf.getCenter().y - (tile_size_ / 2)});
+      }
+  
+    } else {
+      // if this statement executes, the tile is a property and doesn't have
+      // an image, but it does have colors
+  
+      // print colors on tiles
       Property *property = dynamic_cast<Property*>(tile);
       Rectf color_rectf;
   
       if (position < 10) {
-        color_rectf = Rectf(rectf.x1, rectf.y1, rectf.x2, rectf.y1 +
-                (tile_size_ / 3));
-        
+        color_rectf = Rectf(rectf.x1, rectf.y1, rectf.x2,
+                rectf.y1 + (tile_size_ / 3));
+    
       } else if (position > 10 && position < 20) {
         color_rectf = Rectf(rectf.x2 - (tile_size_ / 3),
-                rectf.y1, rectf.x2, rectf.y2);
-        
+                            rectf.y1, rectf.x2, rectf.y2);
+    
       } else if (position > 20 && position < 30) {
-        color_rectf = Rectf(rectf.x1, rectf.y2 - (tile_size_ / 3), rectf.x2,
-                rectf.y2);
-        
+        color_rectf = Rectf(rectf.x1, rectf.y2 - (tile_size_ / 3),
+                rectf.x2, rectf.y2);
+    
       } else {
-        color_rectf = Rectf(rectf.x1, rectf.y1, rectf.x1 + (tile_size_ / 3),
-                rectf.y2);
+        color_rectf = Rectf(rectf.x1, rectf.y1,
+                rectf.x1 + (tile_size_ / 3), rectf.y2);
       }
       
       cinder::gl::color(property->GetColor());
       cinder::gl::drawSolidRect(color_rectf);
+      
+      // print name and price normally
+      ss << "\n" << price_ss.str();
+      PrintText(ss.str(), Color::black(), size, rectf.getCenter());
     }
-  
-  
   }
 }
 

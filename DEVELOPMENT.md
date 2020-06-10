@@ -23,3 +23,5 @@ whether to collect $200 when passing go, and number of CPUs
 ## Week 2
 ### 6/8/2020
 - Add property colors to tiles
+- Add remaining tile classes and tiles to vector
+### 6/9/2020
