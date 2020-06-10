@@ -3,11 +3,9 @@
 //
 
 #include <cinder/app/AppBase.h>
-#include "utility.h"
 #include "board.h"
 #include "property.h"
 #include "special.h"
-#include "railroad.h"
 
 
 namespace monopoly {
@@ -16,55 +14,53 @@ namespace monopoly {
   
     if (infile.good()) {
       infile >> j;
-      
+  
+      int index = 0;
       for (auto& tile : j["tiles"]) {
         Tile *my_tile;
 
-        if (tile["group"] == "Railroad") {
-  
-          int rent[4];
-          for (int i = 0; i < 4; i++) {
-            rent[i] = tile["rent"][i];
-          }
+        if (tile["group"] == "Special") {
           
-          my_tile = new Railroad(tile["name"], tile["position"],
-                  tile["price"], rent, tile["group"]);
-        
-        } else if (tile["group"] == "Special") {
-          
-          my_tile = new Special(tile["name"], tile["position"], 0,
+          my_tile = new Special(tile["name"], index, 0,
                   tile["group"]);
-        
-        } else if (tile["group"] == "Utility") {
-          
-          my_tile = new Utility(tile["name"], tile["position"],
-                  tile["price"], tile["group"]);
           
         } else {
           
           int rent[6];
-          int rgb[3];
-  
-          for (int i = 0; i < 6; i++) {
-            rent[i] = tile["rent"][i];
-            
-            if (i < 3) {
-              rgb[i] = tile["rgb"][i];
-            }
+          int i = 0;
+          for (int rent_num : tile["rent"]) {
+            rent[i] = rent_num;
+            i++;
           }
           
-          // ignore the following error
-          my_tile = new Property(tile["name"], tile["position"],
-                  tile["price"], rent, tile["housecost"],
-                  tile["group"], rgb);
+          if (tile["group"] == "Railroad" || tile["group"] == "Utility") {
+            int rgb[3] = {0, 0, 0};
+            my_tile = new Property(tile["name"], index,
+                    tile["price"], rent, 0, tile["group"], rgb);
+            
+          } else {
+            int rgb[3];
+            for (int i = 0; i < 3; i++) {
+              rgb[i] = tile["rgb"][i];
+            }
+  
+            my_tile = new Property(tile["name"], index,
+                    tile["price"], rent, tile["housecost"],
+                    tile["group"], rgb);
+          }
         }
   
         tiles.push_back(my_tile);
+        index++;
       }
     }
   }
   
   std::vector<Tile*> Board::GetTiles() {
     return tiles;
+  }
+  
+  Tile* Board::GetTileAtPos(int position) {
+    return tiles.at(position);
   }
 }

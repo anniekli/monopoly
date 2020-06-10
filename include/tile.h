@@ -6,7 +6,6 @@
 #define MONOPOLY_TILE_H
 
 #include <string>
-#include <utility>
 
 namespace monopoly {
 
@@ -32,6 +31,8 @@ class Tile {
   private:
     const std::string name_;
     const int position_;
+  
+  protected:
     const int price_;
     const std::string group_;
     

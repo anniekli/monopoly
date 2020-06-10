@@ -6,7 +6,7 @@
 #include <cinder/gl/gl.h>
 #include <gflags/gflags.h>
 #include <property.h>
-#include <utility.h>
+#include "cinder/app/MouseEvent.h"
 
 
 namespace monopoly {
@@ -136,7 +136,7 @@ void Monopoly::DrawBoard() {
       size = {2 * tile_size_, tile_size_};
     
     } else {
-      // corners are squares
+      // corners are squares -- this individually creates corner tiles
       size = {2 * tile_size_, 2 * tile_size_};
   
       if (position == 0) {
@@ -183,8 +183,7 @@ void Monopoly::DrawBoard() {
         cinder::gl::draw(water_img, image_coord);
       }
       
-      //railroads and utility have prices, so print name and price around the
-      // image
+      //print name and price around the image
       if ((position > 10 && position < 20) || (position > 30)) {
         PrintText(ss.str(), Color::black(), size,
                 {rectf.getCenter().x,rectf.getCenter().y - (tile_size_ / 3)});
@@ -197,16 +196,15 @@ void Monopoly::DrawBoard() {
                 {rectf.getCenter().x, rectf.getCenter().y + (tile_size_ / 2)});
       }
       
-      // if special tile, there is no price, so only print the name
     } else if (tile->GetGroup() == special) {
       if (tile->GetName() == chance) {
         cinder::gl::draw(chance_img, image_coord);
       
       } else if (tile->GetName() == chest) {
         cinder::gl::draw(chest_img, image_coord);
-      
       }
   
+      // if special tile, there is no price, so only print the name
       if ((position > 10 && position < 20) || (position > 30)) {
         PrintText(ss.str(), Color::black(), size,
                 {rectf.getCenter().x, rectf.getCenter().y - (tile_size_ / 3)});
@@ -216,7 +214,7 @@ void Monopoly::DrawBoard() {
       }
   
     } else {
-      // if this statement executes, the tile is a property and doesn't have
+      // if this statement executes, the tile is a street and doesn't have
       // an image, but it does have colors
   
       // print colors on tiles
@@ -242,6 +240,8 @@ void Monopoly::DrawBoard() {
       
       cinder::gl::color(property->GetColor());
       cinder::gl::drawSolidRect(color_rectf);
+      cinder::gl::color(Color::black());
+      cinder::gl::drawStrokedRect(color_rectf);
       
       // print name and price normally
       ss << "\n" << price_ss.str();
@@ -251,5 +251,9 @@ void Monopoly::DrawBoard() {
 }
 
 void Monopoly::keyDown(KeyEvent event) { }
+
+void Monopoly::mouseDown(cinder::app::MouseEvent event) {
+
+}
 
 }  // namespace monopoly

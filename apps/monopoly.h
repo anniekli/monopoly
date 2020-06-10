@@ -29,7 +29,8 @@ class Monopoly : public cinder::app::App {
   void update() override;
   void draw() override;
   void keyDown(cinder::app::KeyEvent) override;
-  
+  void mouseDown(cinder::app::MouseEvent event) override;
+
 private:
   void DrawBoard();
   
@@ -50,7 +51,6 @@ private:
   cinder::gl::Texture2dRef water_img;
   cinder::gl::Texture2dRef chance_img;
   cinder::gl::Texture2dRef chest_img;
-  
   
   float tile_size_ = getWindowWidth() / 13;
   Color background_color = Color(191/255.0f, 219/255.0f, 174/255.0f);

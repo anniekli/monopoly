@@ -25,6 +25,7 @@ public:
   Tile GetTile();
   void GetChanceCard();
   std::vector<Tile*> GetTiles();
+  Tile* GetTileAtPos(int position);
 
 private:
   std::ifstream infile;

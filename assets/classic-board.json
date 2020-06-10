@@ -1,8 +1,11 @@
 {
   "tiles": [
     {
+      "name": "Go",
+      "group": "Special"
+    },
+    {
       "name": "Mediterranean Avenue",
-      "position": 1,
       "price": 60,
       "rent": [
         2,
@@ -17,8 +20,11 @@
       "rgb": [75, 0, 130]
     },
     {
+      "name": "Community Chest",
+      "group": "Special"
+    },
+    {
       "name": "Baltic Avenue",
-      "position": 3,
       "price": 60,
       "rent": [
         4,
@@ -33,8 +39,22 @@
       "rgb": [75, 0, 130]
     },
     {
+      "name": "Income Tax",
+      "group": "Special"
+    },
+    {
+      "name": "Reading Railroad",
+      "price": 200,
+      "rent": [
+        25,
+        50,
+        100,
+        200
+      ],
+      "group": "Railroad"
+    },
+    {
       "name": "Oriental Avenue",
-      "position": 6,
       "price": 100,
       "rent": [
         6,
@@ -49,8 +69,11 @@
       "rgb": [135, 206, 250]
     },
     {
+      "name": "Chance",
+      "group": "Special"
+    },
+    {
       "name": "Vermont Avenue",
-      "position": 8,
       "price": 100,
       "rent": [
         6,
@@ -66,7 +89,6 @@
     },
     {
       "name": "Connecticut Avenue",
-      "position": 9,
       "price": 120,
       "rent": [
         8,
@@ -81,8 +103,11 @@
       "rgb": [135, 206, 250]
     },
     {
+      "name": "Jail / Just Visiting",
+      "group": "Special"
+    },
+    {
       "name": "St. Charles Place",
-      "position": 11,
       "price": 140,
       "rent": [
         10,
@@ -97,8 +122,16 @@
       "rgb": [255, 20, 147]
     },
     {
+      "name": "Electric Company",
+      "price": 150,
+      "rent": [
+        4,
+        10
+      ],
+      "group": "Utility"
+    },
+    {
       "name": "States Avenue",
-      "position": 13,
       "price": 140,
       "rent": [
         10,
@@ -114,7 +147,6 @@
     },
     {
       "name": "Virginia Avenue",
-      "position": 14,
       "price": 160,
       "rent": [
         12,
@@ -129,8 +161,18 @@
       "rgb": [255, 20, 147]
     },
     {
+      "name": "Pennsylvania Railroad",
+      "price": 200,
+      "rent": [
+        25,
+        50,
+        100,
+        200
+      ],
+      "group": "Railroad"
+    },
+    {
       "name": "St. James Place",
-      "position": 16,
       "price": 180,
       "rent": [
         14,
@@ -145,8 +187,11 @@
       "rgb": [255, 165, 0]
     },
     {
+      "name": "Community Chest",
+      "group": "Special"
+    },
+    {
       "name": "Tennessee Avenue",
-      "position": 18,
       "price": 180,
       "rent": [
         14,
@@ -162,7 +207,6 @@
     },
     {
       "name": "New York Avenue",
-      "position": 19,
       "price": 200,
       "rent": [
         16,
@@ -177,8 +221,11 @@
       "rgb": [255, 165, 0]
     },
     {
+      "name": "Free Parking",
+      "group": "Special"
+    },
+    {
       "name": "Kentucky Avenue",
-      "position": 21,
       "price": 220,
       "rent": [
         18,
@@ -193,8 +240,11 @@
       "rgb": [255, 0, 0]
     },
     {
+      "name": "Chance",
+      "group": "Special"
+    },
+    {
       "name": "Indiana Avenue",
-      "position": 23,
       "price": 220,
       "rent": [
         18,
@@ -210,7 +260,6 @@
     },
     {
       "name": "Illinois Avenue",
-      "position": 24,
       "price": 240,
       "rent": [
         20,
@@ -223,10 +272,19 @@
       "housecost": 150,
       "group": "red",
       "rgb": [255, 0, 0]
+    },    {
+      "name": "B. & O. Railroad",
+      "price": 200,
+      "rent": [
+        25,
+        50,
+        100,
+        200
+      ],
+      "group": "Railroad"
     },
     {
       "name": "Atlantic Avenue",
-      "position": 26,
       "price": 260,
       "rent": [
         22,
@@ -242,7 +300,6 @@
     },
     {
       "name": "Ventnor Avenue",
-      "position": 27,
       "price": 260,
       "rent": [
         22,
@@ -257,8 +314,16 @@
       "rgb": [255, 255, 0]
     },
     {
+      "name": "Water Works",
+      "price": 150,
+      "rent": [
+        4,
+        10
+      ],
+      "group": "Utility"
+    },
+    {
       "name": "Marvin Gardens",
-      "position": 29,
       "price": 280,
       "rent": [
         22,
@@ -273,8 +338,11 @@
       "rgb": [255, 255, 0]
     },
     {
+      "name": "Go To Jail",
+      "group": "Special"
+    },
+    {
       "name": "Pacific Avenue",
-      "position": 31,
       "price": 300,
       "rent": [
         26,
@@ -290,7 +358,6 @@
     },
     {
       "name": "North Carolina Avenue",
-      "position": 32,
       "price": 300,
       "rent": [
         26,
@@ -305,8 +372,11 @@
       "rgb": [0, 128, 0]
     },
     {
+      "name": "Community Chest",
+      "group": "Special"
+    },
+    {
       "name": "Pennsylvania Avenue",
-      "position": 34,
       "price": 320,
       "rent": [
         28,
@@ -321,8 +391,22 @@
       "rgb": [0, 128, 0]
     },
     {
+      "name": "Short Line Railroad",
+      "price": 200,
+      "rent": [
+        25,
+        50,
+        100,
+        200
+      ],
+      "group": "Railroad"
+    },
+    {
+      "name": "Chance",
+      "group": "Special"
+    },
+    {
       "name": "Park Place",
-      "position": 37,
       "price": 350,
       "rent": [
         35,
@@ -337,8 +421,11 @@
       "rgb": [0, 0, 139]
     },
     {
+      "name": "Luxury Tax",
+      "group": "Special"
+    },
+    {
       "name": "Boardwalk",
-      "position": 39,
       "price": 400,
       "rent": [
         50,
@@ -351,169 +438,7 @@
       "housecost": 200,
       "group": "darkblue",
       "rgb": [0, 0, 139]
-    },
-    {
-      "name": "Electric Company",
-      "position": 12,
-      "price": 150,
-      "group": "Utility"
-    },
-    {
-      "name": "Water Works",
-      "position": 28,
-      "price": 150,
-      "group": "Utility"
-    },
-    {
-      "name": "Reading Railroad",
-      "position": 5,
-      "price": 200,
-      "rent": [
-        25,
-        50,
-        100,
-        200
-      ],
-      "group": "Railroad"
-    },
-    {
-      "name": "Pennsylvania Railroad",
-      "position": 15,
-      "price": 200,
-      "rent": [
-        25,
-        50,
-        100,
-        200
-      ],
-      "group": "Railroad"
-    },
-    {
-      "name": "B. & O. Railroad",
-      "position": 25,
-      "price": 200,
-      "rent": [
-        25,
-        50,
-        100,
-        200
-      ],
-      "group": "Railroad"
-    },
-    {
-      "name": "Short Line Railroad",
-      "position": 35,
-      "price": 200,
-      "rent": [
-        25,
-        50,
-        100,
-        200
-      ],
-      "group": "Railroad"
-    },
-    {
-      "name": "Go",
-      "position": 0,
-      "group": "Special"
-    },
-    {
-      "name": "Income Tax",
-      "position": 4,
-      "group": "Special"
-    },
-    {
-      "name": "Jail / Just Visiting",
-      "position": 10,
-      "group": "Special"
-    },
-    {
-      "name": "Chance",
-      "position": 7,
-      "group": "Special"
-    },
-    {
-      "name": "Chance",
-      "position": 22,
-      "group": "Special"
-    },
-    {
-      "name": "Chance",
-      "position": 36,
-      "group": "Special"
-    },
-    {
-      "name": "Free Parking",
-      "position": 20,
-      "group": "Special"
-    },
-    {
-      "name": "Community Chest",
-      "position": 2,
-      "group": "Special"
-    },
-    {
-      "name": "Community Chest",
-      "position": 17,
-      "group": "Special"
-    },
-    {
-      "name": "Community Chest",
-      "position": 33,
-      "group": "Special"
-    },
-    {
-      "name": "Go To Jail",
-      "position": 30,
-      "group": "Special"
-    },
-    {
-      "name": "Luxury Tax",
-      "position": 38,
-      "group": "Special"
     }
-  ],
-  "ids": [
-    {"id": "go"},
-    {"id": "mediterraneanave"},
-    {"id": "communitychest"},
-    {"id": "balticave"},
-    {"id": "incometax"},
-    {"id": "readingrailroad"},
-    {"id": "orientalave"},
-    {"id": "chance"},
-    {"id": "vermontave"},
-    {"id": "connecticutave"},
-    {"id": "jail"},
-    {"id": "stcharlesplace"},
-    {"id": "electriccompany"},
-    {"id": "statesave"},
-    {"id": "virginiaave"},
-    {"id": "pennsylvaniarailroad"},
-    {"id": "stjamesplace"},
-    {"id": "communitychest"},
-    {"id": "tennesseeave"},
-    {"id": "newyorkave"},
-    {"id": "freeparking"},
-    {"id": "kentuckyave"},
-    {"id": "chance"},
-    {"id": "indianaave"},
-    {"id": "illinoisave"},
-    {"id": "borailroad"},
-    {"id": "atlanticave"},
-    {"id": "ventnorave"},
-    {"id": "waterworks"},
-    {"id": "marvingardens"},
-    {"id": "gotojail"},
-    {"id": "pacificave"},
-    {"id": "northcarolinaave"},
-    {"id": "communitychest"},
-    {"id": "pennsylvaniaave"},
-    {"id": "shortlinerailroad"},
-    {"id": "chance"},
-    {"id": "parkplace"},
-    {"id": "luxerytax"},
-    {"id": "boardwalk"}
   ],
   "chance": [
     {

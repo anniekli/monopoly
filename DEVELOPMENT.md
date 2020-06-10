@@ -25,3 +25,6 @@ whether to collect $200 when passing go, and number of CPUs
 - Add property colors to tiles
 - Add remaining tile classes and tiles to vector
 ### 6/9/2020
+- Add railroad images
+### 6/9/2020
+- Add images to remaining tiles(not including corners and tax)

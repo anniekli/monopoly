@@ -20,7 +20,7 @@ public:
           num_houses_{0} {
     
     // manually copy in the arrays
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < sizeof(rent); i++) {
       rent_[i] = rent[i];
       
       if (i < 3) {
@@ -41,6 +41,7 @@ private:
   int rgb_[3];
   const int house_cost_;
   int num_houses_;
+  const int mortgage_ = price_ / 2;
   
 };
 }
