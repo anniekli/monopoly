@@ -10,6 +10,14 @@ using cinder::app::RendererGl;
 
 namespace monopoly {
   
+  static const std::string special = "Special";
+  static const std::string g_utility = "Utility";
+  static const std::string g_railroad = "Railroad";
+  static const std::string chance = "Chance";
+  static const std::string chest = "Community Chest";
+  static const std::string water = "Water Works";
+  static const std::string electricity = "Electric Company";
+  
   DEFINE_uint32(speed, 50, "the speed (delay) of the game");
   DEFINE_string(name, "Annie", "the name of the player");
   DEFINE_string(file, "classic-board.json", "the filepath of the json file "

@@ -46,7 +46,7 @@ void Monopoly::setup() {
   
   // create tile images
   railroad_img = cinder::gl::Texture2d::create
-          (loadImage(loadAsset("railroad.png")));
+          (loadImage(loadAsset("g_railroad.png")));
   electric_img = cinder::gl::Texture2d::create
           (loadImage(loadAsset("electric.png")));
   water_img = cinder::gl::Texture2d::create
@@ -169,10 +169,10 @@ void Monopoly::DrawBoard() {
                          rectf.getCenter().x + (tile_size_ / 4),
                          rectf.getCenter().y + (tile_size_ / 4)};
     
-    // draw image on railroad, utility, and special tiles
-    // only railroad and utility have prices
-    if (tile->GetGroup() == railroad || tile->GetGroup() == utility) {
-      if (tile->GetGroup() == railroad) {
+    // draw image on g_railroad, utility, and special tiles
+    // only g_railroad and utility have prices
+    if (tile->GetGroup() == g_railroad || tile->GetGroup() == g_utility) {
+      if (tile->GetGroup() == g_railroad) {
         cinder::gl::draw(railroad_img, image_coord);
         
       } else if (tile->GetName() == electricity) {

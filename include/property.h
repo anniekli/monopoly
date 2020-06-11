@@ -35,13 +35,20 @@ public:
   int GetNumHouses() const;
   Color GetColor() const;
   
+  void SetDice(int one, int two);
+  void SetOwner(int owner);
+  int GetOwner();
 
 private:
   int rent_[6];
   int rgb_[3];
   const int house_cost_;
-  int num_houses_;
   const int mortgage_ = price_ / 2;
+  
+  int num_houses_;
+  int owner_ = -1;
+  int die_one;
+  int die_two;
   
 };
 }

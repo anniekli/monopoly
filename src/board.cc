@@ -33,10 +33,17 @@ namespace monopoly {
             i++;
           }
           
-          if (tile["group"] == "Railroad" || tile["group"] == "Utility") {
+          if (tile["group"] == g_railroad || tile["group"] == g_utility) {
             int rgb[3] = {0, 0, 0};
             my_tile = new Property(tile["name"], index,
                     tile["price"], rent, 0, tile["group"], rgb);
+  
+            Property *property = dynamic_cast<Property*>(my_tile);
+            if (tile["group"] == g_railroad) {
+              railroad_tiles_.push_back(property);
+            } else {
+              utility_tiles_.push_back(property);
+            }
             
           } else {
             int rgb[3];
@@ -47,6 +54,9 @@ namespace monopoly {
             my_tile = new Property(tile["name"], index,
                     tile["price"], rent, tile["housecost"],
                     tile["group"], rgb);
+  
+            Property *property = dynamic_cast<Property*>(my_tile);
+            street_tiles_.push_back(property);
           }
         }
   
@@ -62,5 +72,17 @@ namespace monopoly {
   
   Tile* Board::GetTileAtPos(int position) {
     return tiles.at(position);
+  }
+  
+  std::vector<Property *> Board::GetStreets() const {
+    return street_tiles_;
+  }
+  
+  std::vector<Property *> Board::GetRailroads() const {
+    return railroad_tiles_;
+  }
+  
+  std::vector<Property *> Board::GetUtilities() const {
+    return utility_tiles_;
   }
 }

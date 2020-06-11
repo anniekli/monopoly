@@ -35,7 +35,6 @@ class Tile {
   protected:
     const int price_;
     const std::string group_;
-    
   };
 }
 

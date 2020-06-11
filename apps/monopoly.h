@@ -38,14 +38,6 @@ private:
   Player player_;
   GameState state_;
   
-  std::string special = "Special";
-  std::string utility = "Utility";
-  std::string railroad = "Railroad";
-  std::string chance = "Chance";
-  std::string chest = "Community Chest";
-  std::string water = "Water Works";
-  std::string electricity = "Electric Company";
-  
   cinder::gl::Texture2dRef railroad_img;
   cinder::gl::Texture2dRef electric_img;
   cinder::gl::Texture2dRef water_img;
