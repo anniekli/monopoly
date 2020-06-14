@@ -9,6 +9,10 @@
 
 
 namespace monopoly {
+  std::vector<Property*> Board::railroad_tiles_ = {};
+  std::vector<Property*> Board::utility_tiles_ = {};
+  std::vector<Property*> Board::street_tiles_ = {};
+  
   Board::Board(std::string &filepath) {
     infile.open(cinder::app::getAssetPath(filepath), std::ios::in);
   
@@ -47,8 +51,8 @@ namespace monopoly {
             
           } else {
             int rgb[3];
-            for (int i = 0; i < 3; i++) {
-              rgb[i] = tile["rgb"][i];
+            for (int j = 0; j < 3; j++) {
+              rgb[j] = tile["rgb"][j];
             }
   
             my_tile = new Property(tile["name"], index,
@@ -74,14 +78,14 @@ namespace monopoly {
     return tiles.at(position);
   }
   
-  std::vector<Property *> Board::GetStreets() const {
+  std::vector<Property*> Board::GetStreets() const {
     return street_tiles_;
   }
-  
-  std::vector<Property *> Board::GetRailroads() const {
+
+  std::vector<Property*> Board::GetRailroads() const {
     return railroad_tiles_;
   }
-  
+
   std::vector<Property *> Board::GetUtilities() const {
     return utility_tiles_;
   }

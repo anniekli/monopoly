@@ -26,8 +26,6 @@ class Tile {
     
     virtual int GetPrice() const { return price_; };
     
-    // find some way to return group type as an object...look into inheritance
-  
   private:
     const std::string name_;
     const int position_;

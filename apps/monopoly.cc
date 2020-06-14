@@ -46,7 +46,7 @@ void Monopoly::setup() {
   
   // create tile images
   railroad_img = cinder::gl::Texture2d::create
-          (loadImage(loadAsset("g_railroad.png")));
+          (loadImage(loadAsset("railroad.png")));
   electric_img = cinder::gl::Texture2d::create
           (loadImage(loadAsset("electric.png")));
   water_img = cinder::gl::Texture2d::create
@@ -175,7 +175,7 @@ void Monopoly::DrawBoard() {
       if (tile->GetGroup() == g_railroad) {
         cinder::gl::draw(railroad_img, image_coord);
         
-      } else if (tile->GetName() == electricity) {
+      } else if (tile->GetName() == g_electricity) {
         cinder::gl::draw(electric_img, image_coord);
         
       } else {
@@ -196,11 +196,11 @@ void Monopoly::DrawBoard() {
                 {rectf.getCenter().x, rectf.getCenter().y + (tile_size_ / 2)});
       }
       
-    } else if (tile->GetGroup() == special) {
-      if (tile->GetName() == chance) {
+    } else if (tile->GetGroup() == g_special) {
+      if (tile->GetName() == g_chance) {
         cinder::gl::draw(chance_img, image_coord);
       
-      } else if (tile->GetName() == chest) {
+      } else if (tile->GetName() == g_chest) {
         cinder::gl::draw(chest_img, image_coord);
       }
   

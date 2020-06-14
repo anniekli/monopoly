@@ -8,7 +8,7 @@
 namespace monopoly {
   int Property::GetRent() const {
     int num_owned = 0;
-  
+
     // rent for railroads and utilities depend on number owned
     // num_owned always >=
     if (group_ == g_railroad) {
@@ -18,14 +18,14 @@ namespace monopoly {
         }
       }
       return rent_[num_owned - 1];
-    
+
     } else if (group_ == g_utility) {
       for (auto& utility : Board::utility_tiles_) {
         if (utility->owner_ == owner_) {
           num_owned++;
         }
       }
-      
+
       // rent for utilities also depends on dice rolls, so be sure to set the
       // dice before getting rent!
       return rent_[num_owned - 1] * (die_one + die_two);
@@ -75,6 +75,11 @@ namespace monopoly {
       }
     }
     return Color(rgb_temp[0], rgb_temp[1], rgb_temp[2]);
+  }
+  
+  void Property::SetDice(int one, int two) {
+    die_one = one;
+    die_two = two;
   }
   
 }

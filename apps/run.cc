@@ -10,13 +10,13 @@ using cinder::app::RendererGl;
 
 namespace monopoly {
   
-  static const std::string special = "Special";
-  static const std::string g_utility = "Utility";
-  static const std::string g_railroad = "Railroad";
-  static const std::string chance = "Chance";
-  static const std::string chest = "Community Chest";
-  static const std::string water = "Water Works";
-  static const std::string electricity = "Electric Company";
+  extern const std::string g_special = "Special";
+  extern const std::string g_utility = "Utility";
+  extern const std::string g_railroad = "Railroad";
+  extern const std::string g_chance = "Chance";
+  extern const std::string g_chest = "Community Chest";
+  extern const std::string g_water = "Water Works";
+  extern const std::string g_electricity = "Electric Company";
   
   DEFINE_uint32(speed, 50, "the speed (delay) of the game");
   DEFINE_string(name, "Annie", "the name of the player");
