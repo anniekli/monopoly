@@ -4,13 +4,17 @@
 
 #include <board.h>
 #include "property.h"
+#include <cinder/Rect.h>
+#include <cinder/app/AppBase.h>
+
 
 namespace monopoly {
   int Property::GetRent() const {
     int num_owned = 0;
 
     // rent for railroads and utilities depend on number owned
-    // num_owned always >=
+    // num_owned always >= 1 because the program shouldn't be getting rent
+    // until at least one of the properties is owned
     if (group_ == g_railroad) {
       for (auto& railroad : Board::railroad_tiles_) {
         if (railroad->owner_ == owner_) {
@@ -43,6 +47,54 @@ namespace monopoly {
       }
     }
     return false;
+  }
+  
+  cinder::Rectf Property::GetRectf() const {
+    const float width = cinder::app::getWindowWidth();
+    const float height = cinder::app::getWindowHeight();
+    
+    cinder::Rectf rectf;
+    
+    if (position_ > 0 && position_ < 10) {
+    
+      rectf = cinder::Rectf(width - (tile_size_ * (position_ + 2)),
+                    height - (tile_size_ * 2),
+                    width - ((position_ + 1) * tile_size_), height);
+    
+    } else if (position_ > 10 && position_ < 20) {
+    
+      float new_pos = position_ - 10;
+      rectf = cinder::Rectf(0, height - (tile_size_ * (new_pos + 2)),
+                    tile_size_ * 2, height - (tile_size_ * (new_pos + 1)));
+    
+    } else if (position_ > 20 && position_ < 30) {
+    
+      float new_pos = position_ - 20;
+      rectf = cinder::Rectf(tile_size_ * (new_pos + 1), 0,
+                    tile_size_ * (new_pos + 2), tile_size_ * 2);
+    
+    } else if (position_ > 30) {
+  
+      float new_pos = position_ - 30;
+      rectf = cinder::Rectf(width - (tile_size_ * 2),
+                    tile_size_ * (new_pos + 1),
+                    width, tile_size_ * (new_pos + 2));
+    }
+    
+    return rectf;
+  }
+  
+  cinder::ivec2 Property::GetTileVec() const {
+    cinder::ivec2 size;
+  
+    if ((position_ > 0 && position_ < 10) ||
+        (position_ > 20 && position_ < 30)) {
+      size = {tile_size_, 2 * tile_size_};
+    
+    } else if ((position_ > 10 && position_ < 20) || (position_ > 30)) {
+      size = {2 * tile_size_, tile_size_};
+    }
+    return size;
   }
   
   void Property::SetOwner(int owner) {
@@ -81,5 +133,7 @@ namespace monopoly {
     die_one = one;
     die_two = two;
   }
+  
+
   
 }

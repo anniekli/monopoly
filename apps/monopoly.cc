@@ -6,6 +6,7 @@
 #include <cinder/gl/gl.h>
 #include <gflags/gflags.h>
 #include <property.h>
+#include <random>
 #include "cinder/app/MouseEvent.h"
 
 
@@ -60,13 +61,40 @@ void Monopoly::setup() {
 void Monopoly::update() {
   if (player_.GetMoney() == 0) {
     state_ = GameState::kGameOver;
-  
+  }
+  if (state_ == GameState::kPlayerTurn) {
+    if (is_roll_btn_clicked_) {
+      RollDice();
+      size_t dice = die_one + die_two;
+      player_.UpdatePosition(dice);
+      is_roll_btn_clicked_ = false;
+    }
   }
 }
 
 void Monopoly::draw() {
   DrawBoard();
   
+  switch (state_) {
+    case GameState::kPlayerStart :
+      DrawDice();
+    
+    case GameState::kPlayerTurn :
+      if (!is_player_position_updated_) {
+      
+      }
+  }
+  
+}
+
+void Monopoly::RollDice() {
+  std::random_device rand_dev;
+  std::mt19937 rng(rand_dev());
+  std::uniform_int_distribution<std::mt19937::result_type> one(1,6);
+  std::uniform_int_distribution<std::mt19937::result_type> two(1,6);
+  
+  die_one = one(rng);
+  die_two = two(rng);
 }
 
 template <typename C>
@@ -99,61 +127,10 @@ void Monopoly::DrawBoard() {
   const float height = getWindowHeight();
   
   for (auto& tile : board_.GetTiles()) {
-    
-    Rectf rectf;
-    cinder::ivec2 size;
-  
+    Rectf rectf = tile->GetRectf();
     float position = tile->GetPosition();
+    cinder::ivec2 size = tile->GetTileVec();
     
-    // draw tile outlines for each side of board
-    if (position > 0 && position < 10) {
-      
-      rectf = Rectf(width - (tile_size_ * (position + 2)),
-              height - (tile_size_ * 2),
-              width - ((position + 1) * tile_size_), height);
-      size = {tile_size_, 2 * tile_size_};
-      
-    } else if (position > 10 && position < 20) {
-      
-      float new_pos = position - 10;
-      rectf = Rectf(0, height - (tile_size_ * (new_pos + 2)),
-                    tile_size_ * 2, height - (tile_size_ * (new_pos + 1)));
-      size = {2 * tile_size_, tile_size_};
-      
-    } else if (position > 20 && position < 30) {
-  
-      float new_pos = position - 20;
-      rectf = Rectf(tile_size_ * (new_pos + 1), 0,
-                    tile_size_ * (new_pos + 2), tile_size_ * 2);
-      size = {tile_size_, 2 * tile_size_};
-  
-    } else if (position > 30) {
-      
-      float new_pos = position - 30;
-      rectf = Rectf(width - (tile_size_ * 2),
-                    tile_size_ * (new_pos + 1),
-                    width, tile_size_ * (new_pos + 2));
-      size = {2 * tile_size_, tile_size_};
-    
-    } else {
-      // corners are squares -- this individually creates corner tiles
-      size = {2 * tile_size_, 2 * tile_size_};
-  
-      if (position == 0) {
-        rectf = Rectf(width - (tile_size_ * 2), height - (tile_size_ * 2),
-                width, height);
-        
-      } else if (position == 10) {
-        rectf = Rectf(0, height - (tile_size_ * 2),tile_size_ * 2, height);
-        
-      } else if (position == 20) {
-        rectf = Rectf(0, 0, tile_size_ * 2, tile_size_ * 2);
-        
-      } else if (position == 30) {
-        rectf = Rectf(width - (tile_size_ * 2), 0,
-                      width, tile_size_ * 2);
-      }
-    }
     cinder::gl::color(Color::black());
     cinder::gl::drawStrokedRect(rectf);
     
@@ -250,10 +227,19 @@ void Monopoly::DrawBoard() {
   }
 }
 
+void Monopoly::DrawDice() {
+
+}
+
+void Monopoly::DrawRollButton() {
+}
+
 void Monopoly::keyDown(KeyEvent event) { }
 
 void Monopoly::mouseDown(cinder::app::MouseEvent event) {
 
 }
+
+
 
 }  // namespace monopoly

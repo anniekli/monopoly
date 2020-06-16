@@ -8,4 +8,19 @@ namespace monopoly {
   int Player::GetMoney() {
     return money_;
   }
+  
+  int Player::GetPosition() {
+    return position_;
+  }
+  
+  void Player::SetPosition(size_t position) {
+    position_ = position;
+  }
+  
+  void Player::UpdatePosition(size_t dice_sum) {
+    position_ += dice_sum;
+    position_ = position_ % num_tiles_;
+  }
+  
+  
 }

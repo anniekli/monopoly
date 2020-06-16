@@ -5,6 +5,7 @@
 #ifndef MONOPOLY_SPECIAL_H
 #define MONOPOLY_SPECIAL_H
 #include "tile.h"
+#include <cinder/Rect.h>
 
 
 namespace monopoly {
@@ -15,6 +16,9 @@ public:
   Special(const std::string &name, int position, int price,
            const std::string &group)
           : Tile{name, position, price, group} {}
+  
+  cinder::Rectf GetRectf() const override;
+  cinder::ivec2 GetTileVec() const override;
 };
 }
 

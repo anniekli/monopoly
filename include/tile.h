@@ -6,6 +6,9 @@
 #define MONOPOLY_TILE_H
 
 #include <string>
+#include <cinder/Rect.h>
+#include <cinder/app/App.h>
+
 
 namespace monopoly {
 
@@ -24,15 +27,21 @@ class Tile {
     
     int GetPosition() const { return position_; };
     
-    virtual int GetPrice() const { return price_; };
+    int GetPrice() const { return price_; };
     
+    virtual cinder::Rectf GetRectf() const { return cinder::Rectf(0, 0, 0, 0); };
+    
+    virtual cinder::ivec2 GetTileVec() const { return cinder::ivec2(0, 0); };
+  
+  
   private:
     const std::string name_;
-    const int position_;
   
   protected:
     const int price_;
     const std::string group_;
+    const int position_;
+    float tile_size_ = cinder::app::getWindowWidth() / 13;
   };
 }
 

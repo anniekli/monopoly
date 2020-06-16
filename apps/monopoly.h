@@ -7,6 +7,7 @@
 #include <nlohmann/json.hpp>
 #include <board.h>
 #include <cinder/gl/Texture.h>
+#include <cinder/Rect.h>
 #include "player.h"
 
 using std::vector;
@@ -19,6 +20,10 @@ namespace monopoly {
 enum class GameState {
   kStart,
   kPlaying,
+  kPlayerStart,
+  kPlayerTurn,
+  kRollDice,
+  kCPUTurn,
   kGameOver,
 };
 
@@ -33,6 +38,9 @@ class Monopoly : public cinder::app::App {
 
 private:
   void DrawBoard();
+  void DrawDice();
+  void DrawRollButton();
+  void RollDice();
   
   Board board_;
   Player player_;
@@ -46,6 +54,15 @@ private:
   
   float tile_size_ = getWindowWidth() / 13;
   Color background_color = Color(191/255.0f, 219/255.0f, 174/255.0f);
+  cinder::Rectf roll_btn_rectf;
+  bool is_dice_rolled_;
+  bool is_roll_btn_clicked_;
+  size_t die_one;
+  size_t die_two;
+  bool is_player_position_updated_;
+  
+  
+  
 };
 }  // namespace monopoly
 

@@ -6,6 +6,7 @@
 #define MONOPOLY_PROPERTY_H
 
 #include <cinder/Color.h>
+#include <cinder/Rect.h>
 #include "tile.h"
 
 namespace monopoly {
@@ -29,6 +30,8 @@ public:
     }
   }
   
+  cinder::Rectf GetRectf() const override;
+  cinder::ivec2 GetTileVec() const override;
   int GetRent() const;
   int GetHouseCost() const;
   bool BuyHouse();
@@ -44,6 +47,7 @@ private:
   int rgb_[3];
   const int house_cost_;
   const int mortgage_ = price_ / 2;
+  
   
   int num_houses_;
   int owner_ = -1;
