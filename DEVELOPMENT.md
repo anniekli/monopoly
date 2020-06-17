@@ -28,3 +28,14 @@ whether to collect $200 when passing go, and number of CPUs
 - Add railroad images
 ### 6/9/2020
 - Add images to remaining tiles(not including corners and tax)
+### 6/10/2020
+- Combined Property, Railroad, and Utility class into one Property class
+    - Allow Property class to access other tiles to calculate rent for
+     railroads and utilities
+### 6/12/2020
+- Work on unresolved external error
+### 6/13/2020
+- Solved unresolved external error--missing definition of static variables
+### 6/15/2020
+- Started working on gameplay
+### 6/16/2020
