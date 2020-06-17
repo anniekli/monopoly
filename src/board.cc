@@ -70,6 +70,14 @@ namespace monopoly {
     }
   }
   
+  int Board::GetJailPosition() {
+    for (auto& tile : tiles) {
+      if (tile->GetName() == "Jail") {
+        return tile->GetPosition();
+      }
+    }
+  }
+  
   std::vector<Tile*> Board::GetTiles() {
     return tiles;
   }
@@ -89,4 +97,5 @@ namespace monopoly {
   std::vector<Property *> Board::GetUtilities() const {
     return utility_tiles_;
   }
+  
 }

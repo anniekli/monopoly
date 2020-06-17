@@ -17,6 +17,7 @@ namespace monopoly {
   extern const std::string g_chest = "Community Chest";
   extern const std::string g_water = "Water Works";
   extern const std::string g_electricity = "Electric Company";
+  extern const std::string g_go_to_jail = "Go To Jail";
   
   DEFINE_uint32(speed, 50, "the speed (delay) of the game");
   DEFINE_string(name, "Annie", "the name of the player");

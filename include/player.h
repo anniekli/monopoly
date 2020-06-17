@@ -27,6 +27,7 @@ public:
   int GetPosition();
   void UpdatePosition(size_t dice_sum);
   void SetPosition(size_t position);
+  void AddMoney(int quantity);
 
 private:
   

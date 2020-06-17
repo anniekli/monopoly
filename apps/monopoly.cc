@@ -40,7 +40,8 @@ DECLARE_uint32(num_cpu);
 
 Monopoly::Monopoly()
   : board_{FLAGS_file},
-    state_{GameState::kStart}
+    state_{GameState::kStart},
+    num_cpu_{FLAGS_num_cpu}
 {}
 
 void Monopoly::setup() {
@@ -56,6 +57,10 @@ void Monopoly::setup() {
           (loadImage(loadAsset("chance.png")));
   chest_img = cinder::gl::Texture2d::create
           (loadImage(loadAsset("community-chest.png")));
+  
+  // set all player positions to 0
+  player_.SetPosition(0);
+  
 }
 
 void Monopoly::update() {
@@ -68,6 +73,30 @@ void Monopoly::update() {
       size_t dice = die_one + die_two;
       player_.UpdatePosition(dice);
       is_roll_btn_clicked_ = false;
+      
+    } else if (is_player_position_updated_) {
+      if (board_.GetTileAtPos(player_.GetPosition())->GetGroup() != g_special) {
+        Property *property = dynamic_cast<Property*> (board_.GetTileAtPos
+                (player_.GetPosition()));
+        if (property->GetOwner() != 0 && !is_rent_paid_) {
+          player_.AddMoney(-(property->GetRent()));
+          is_rent_paid_ = true;
+        }
+        
+      } else {
+        if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
+        g_go_to_jail) {
+          player_.SetPosition(board_.GetJailPosition());
+        
+        } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
+        g_chance) {
+          board_.GetChanceCard();
+        
+        } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
+                g_chest) {
+          
+        }
+      }
     }
   }
 }
@@ -82,6 +111,17 @@ void Monopoly::draw() {
     case GameState::kPlayerTurn :
       if (!is_player_position_updated_) {
       
+      } else if (is_player_position_updated_) {
+        if (board_.GetTileAtPos(player_.GetPosition())->GetGroup() != g_special) {
+          Property *property = dynamic_cast<Property*> (board_.GetTileAtPos
+                  (player_.GetPosition()));
+          if (property->GetOwner() == -1) {
+            DrawBuyProperty();
+          
+          } else if (property->GetOwner() != 0) {
+            DrawPayRent();
+          }
+        }
       }
   }
   
@@ -122,9 +162,6 @@ void Monopoly::DrawBoard() {
   cinder::gl::disableDepthRead();
   cinder::gl::disableDepthWrite();
   cinder::gl::enableAlphaBlending();
-  
-  const float width = getWindowWidth();
-  const float height = getWindowHeight();
   
   for (auto& tile : board_.GetTiles()) {
     Rectf rectf = tile->GetRectf();
@@ -227,6 +264,14 @@ void Monopoly::DrawBoard() {
   }
 }
 
+void Monopoly::DrawBuyProperty() {
+
+}
+
+void Monopoly::DrawPayRent() {
+
+}
+
 void Monopoly::DrawDice() {
 
 }
@@ -239,6 +284,7 @@ void Monopoly::keyDown(KeyEvent event) { }
 void Monopoly::mouseDown(cinder::app::MouseEvent event) {
 
 }
+
 
 
 

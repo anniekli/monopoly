@@ -21,6 +21,8 @@ extern const std::string g_chance;
 extern const std::string g_chest;
 extern const std::string g_water;
 extern const std::string g_electricity;
+extern const std::string g_go_to_jail;
+
 
 using std::string;
 using json = nlohmann::json;
@@ -38,6 +40,7 @@ public:
   std::vector<Property*> GetStreets() const;
   std::vector<Property*> GetRailroads() const;
   std::vector<Property*> GetUtilities() const;
+  int GetJailPosition();
   friend Property;
 
 private:

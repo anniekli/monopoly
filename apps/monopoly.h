@@ -52,6 +52,7 @@ private:
   cinder::gl::Texture2dRef chance_img;
   cinder::gl::Texture2dRef chest_img;
   
+  
   float tile_size_ = getWindowWidth() / 13;
   Color background_color = Color(191/255.0f, 219/255.0f, 174/255.0f);
   cinder::Rectf roll_btn_rectf;
@@ -60,9 +61,13 @@ private:
   size_t die_one;
   size_t die_two;
   bool is_player_position_updated_;
+  bool is_rent_paid_;
+  size_t num_cpu_;
   
   
+  void DrawBuyProperty();
   
+  void DrawPayRent();
 };
 }  // namespace monopoly
 
