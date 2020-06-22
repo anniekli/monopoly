@@ -23,21 +23,24 @@ Monopoly is one of my favorite board games, but none of my friends or
 - Create class to represent user and hold user information
 
 ### Week 2 (6/8/2020 - 6/14/2020)
-- Start working on gameplay -- allow user to roll dice and move forward on
- the board(display this on the screen and update currentposition dynamically)
-- Also allow user to purchase properties and houses, etc. and display this on
- the board
+- Start working on gameplay
 - Enforce rent on purchased property, and allow user to pay rent, auction,
   mortgage, etc.
 
 ### Week 3 (6/15/2020 - 6/21/2020)
+- Allow user to roll dice and move forward on the board
+ - Create Card class and community chest/chance cards that inherit from it
+
+### Week 4 (6/22/2020)
+- Display player moves on board
+- Allow user to purchase properties and houses, etc. and display this on
+ the board
 - Create abstract class and classes representing computer(see Mineopoly for
  examples)
 - Allow computer user(s) to automatically make their turns
 - Display all user stats on the board
 - Display number of houses/hotels available
 - Display whether or not a property has been bought
-- Create Card class and community chest/chance cards that inherit from it
  
 ## Extension
 - Allow multiple players to play/allow gameplay only between users; no computer
