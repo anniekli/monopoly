@@ -38,4 +38,5 @@ whether to collect $200 when passing go, and number of CPUs
 - Solved unresolved external error--missing definition of static variables
 ### 6/15/2020
 - Started working on gameplay
-### 6/16/2020
+### 6/21/2020
+- Start working on allowing player pieces to move on board
