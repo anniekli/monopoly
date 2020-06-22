@@ -35,6 +35,7 @@ const char kDifferentFont[] = "Purisa";
 DECLARE_uint32(speed);
 DECLARE_string(name);
 DECLARE_string(file);
+DECLARE_string(piece);
 DECLARE_bool(collect_go);
 DECLARE_uint32(num_cpu);
 
@@ -57,6 +58,22 @@ void Monopoly::setup() {
           (loadImage(loadAsset("chance.png")));
   chest_img = cinder::gl::Texture2d::create
           (loadImage(loadAsset("community-chest.png")));
+  
+  // set piece for all players
+  dog_img = cinder::gl::Texture2d::create(loadImage(loadAsset("dog.png"))),
+  iron_img = cinder::gl::Texture2d::create(loadImage(loadAsset("iron.png"))),
+  boat_img = cinder::gl::Texture2d::create(loadImage(loadAsset("boat.png"))),
+  wheelbarrow_img = cinder::gl::Texture2d::create(loadImage(loadAsset("wheelbarrow.png")));
+  
+  if (FLAGS_piece == "dog") {
+    player_ = Player(FLAGS_name, dog_img);
+  } else if (FLAGS_piece == "iron") {
+    player_ = Player(FLAGS_name, iron_img);
+  } else if (FLAGS_piece == "boat") {
+    player_ = Player(FLAGS_name, boat_img);
+  } else {
+    player_ = Player(FLAGS_name, wheelbarrow_img);
+  }
   
   // set all player positions to 0
   player_.SetPosition(0);
@@ -89,12 +106,16 @@ void Monopoly::update() {
           player_.SetPosition(board_.GetJailPosition());
         
         } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
-        g_chance) {
+        g_chance && !is_card_drawn_) {
           board_.GetChanceCard();
+          
+          is_card_drawn_ = true;
         
         } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
-                g_chest) {
+                g_chest && !is_card_drawn_) {
+          board_.GetChestCard();
           
+          is_card_drawn_ = true;
         }
       }
     }

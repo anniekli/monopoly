@@ -7,7 +7,10 @@
 
 #include <string>
 #include <tile.h>
+#include <utility>
 #include <vector>
+#include <cinder/gl/draw.h>
+#include <cinder/gl/gl.h>
 
 namespace monopoly {
 
@@ -15,11 +18,12 @@ class Player {
 
 public:
   Player()
-    :name_(""), money_(2000), in_jail_(false), position_(0) {};
-  Player(std::string name)
-    :name_(name), money_(2000), in_jail_(false), position_(0) {};
-  
+    :name_(""), piece_(), money_(2000), in_jail_(false), position_(0) {};
+  Player(std::string name, cinder::gl::Texture2dRef piece)
+    :name_(std::move(name)), piece_(std::move(piece)), money_(2000), in_jail_(false), position_(0) {};
+    
   std::string GetName();
+  cinder::gl::Texture2dRef GetPiece();
   void BuyProperty(Tile tile);
   void PayRent(Tile tile);
   bool IsJailed();
@@ -31,12 +35,13 @@ public:
 
 private:
   
-  const std::string name_;
+  std::string name_;
+  cinder::gl::Texture2dRef piece_;
   int money_;
   std::vector<Tile> owned_properties_;
   bool in_jail_;
   size_t position_;
-  const size_t num_tiles_ = 40;
+  size_t num_tiles_ = 40;
   
   
 };

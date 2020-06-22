@@ -502,12 +502,12 @@
     {
       "title": "Take a trip to Reading Railroad - If you pass Go, collect $200",
       "action": "move",
-      "tileid": "readingrailroad"
+      "destination": "Reading Railroad"
     },
     {
       "title": "Take a walk on the Boardwalk - Advance token to Boardwalk",
       "action": "move",
-      "tileid": "boardwalk"
+      "destination": "Boardwalk"
     },
     {
       "title": "You have been elected Chairman of the Board - Pay each player $50",
@@ -524,7 +524,7 @@
     {
       "title": "Advance to Go (Collect $200)",
       "action": "move",
-      "tileid": "go"
+      "destination": "Go"
     },
     {
       "title": "Bank error in your favor - Collect $200 ",

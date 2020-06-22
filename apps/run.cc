@@ -23,6 +23,7 @@ namespace monopoly {
   DEFINE_string(name, "Annie", "the name of the player");
   DEFINE_string(file, "classic-board.json", "the filepath of the json file "
                                       "containing checkpoints");
+  DEFINE_string(piece, "dog", "the piece representing the player");
   DEFINE_bool(collect_go, true, "whether to collect $200 when passing go");
   DEFINE_uint32(num_cpu, 1, "the number of computer players, from 1-3");
   

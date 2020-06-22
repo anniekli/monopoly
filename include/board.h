@@ -7,6 +7,7 @@
 
 #include "tile.h"
 #include "property.h"
+#include "card.h"
 #include <string>
 #include <nlohmann/json.hpp>
 #include <fstream>
@@ -34,7 +35,8 @@ public:
   Board(std::string &filepath);
   
   Tile GetTile();
-  void GetChanceCard();
+  Card GetChanceCard();
+  Card GetChestCard();
   std::vector<Tile*> GetTiles();
   Tile* GetTileAtPos(int position);
   std::vector<Property*> GetStreets() const;

@@ -41,6 +41,7 @@ private:
   void DrawDice();
   void DrawRollButton();
   void RollDice();
+  void DrawUpdateCurrentPlayerPosition();
   
   Board board_;
   Player player_;
@@ -52,6 +53,10 @@ private:
   cinder::gl::Texture2dRef chance_img;
   cinder::gl::Texture2dRef chest_img;
   
+  cinder::gl::Texture2dRef dog_img;
+  cinder::gl::Texture2dRef iron_img;
+  cinder::gl::Texture2dRef boat_img;
+  cinder::gl::Texture2dRef wheelbarrow_img;
   
   float tile_size_ = getWindowWidth() / 13;
   Color background_color = Color(191/255.0f, 219/255.0f, 174/255.0f);
@@ -62,6 +67,7 @@ private:
   size_t die_two;
   bool is_player_position_updated_;
   bool is_rent_paid_;
+  bool is_card_drawn_;
   size_t num_cpu_;
   
   

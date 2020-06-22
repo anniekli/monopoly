@@ -5,6 +5,10 @@
 #include "player.h"
 
 namespace monopoly {
+  cinder::gl::Texture2dRef Player::GetPiece() {
+    return piece_;
+  }
+  
   int Player::GetMoney() {
     return money_;
   }
@@ -22,5 +26,3 @@ namespace monopoly {
     position_ = position_ % num_tiles_;
   }
   
-  
-}
