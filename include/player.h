@@ -6,7 +6,7 @@
 #define MONOPOLY_PLAYER_H
 
 #include <string>
-#include <tile.h>
+#include <Tile/tile.h>
 #include <utility>
 #include <vector>
 #include <cinder/gl/draw.h>
@@ -17,8 +17,7 @@ namespace monopoly {
 class Player {
 
 public:
-  Player()
-    :name_(""), piece_(), money_(2000), in_jail_(false), position_(0) {};
+  Player(){};
   Player(std::string name, cinder::gl::Texture2dRef piece)
     :name_(std::move(name)), piece_(std::move(piece)), money_(2000), in_jail_(false), position_(0) {};
     
@@ -31,6 +30,7 @@ public:
   int GetPosition();
   void UpdatePosition(size_t dice_sum);
   void SetPosition(size_t position);
+  void SetIsJailed(bool is_jailed);
   void AddMoney(int quantity);
 
 private:

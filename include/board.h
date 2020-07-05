@@ -5,9 +5,9 @@
 #ifndef MONOPOLY_BOARD_H
 #define MONOPOLY_BOARD_H
 
-#include "tile.h"
-#include "property.h"
-#include "card.h"
+#include "Tile/tile.h"
+#include "Tile/property.h"
+#include "Card/card.h"
 #include <string>
 #include <nlohmann/json.hpp>
 #include <fstream>
@@ -35,8 +35,8 @@ public:
   Board(std::string &filepath);
   
   Tile GetTile();
-  Card GetChanceCard();
-  Card GetChestCard();
+//  Card GetChanceCard();
+//  Card GetChestCard();
   std::vector<Tile*> GetTiles();
   Tile* GetTileAtPos(int position);
   std::vector<Property*> GetStreets() const;
@@ -47,12 +47,19 @@ public:
 
 private:
   
+  void PopulateTiles();
+  void PopulateChanceCards();
+  void PopulateCommunityChestCards();
+  
   std::ifstream infile;
   json j;
   std::vector<Tile*> tiles;
   static std::vector<Property*> railroad_tiles_;
   static std::vector<Property*> utility_tiles_;
   static std::vector<Property*> street_tiles_;
+  
+  std::vector<Card*> chance_cards_;
+  std::vector<Card*> community_chest_cards_;
 };
 }
 

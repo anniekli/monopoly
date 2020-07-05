@@ -1,0 +1,29 @@
+//
+// Created by GWC-CHC-07 on 6/30/2020.
+//
+
+#ifndef MONOPOLY_MOVE_CARD_H
+#define MONOPOLY_MOVE_CARD_H
+
+#include <board.h>
+
+namespace monopoly {
+
+class Move : public Card {
+public:
+  Move(std::string title, CardAction action, int destination)
+  : Card{title, action}, destination_{destination} {};
+  
+  Move(std::string title, CardAction action, std::string group, int
+  rent_multiplier)
+  : Card{title, action},  group_{group}, rent_multiplier_{rent_multiplier} {};
+  
+  void PerformAction(Player &player, const std::vector<Tile*> &tiles) const override;
+  
+private:
+  int destination_;
+  std::string group_;
+  int rent_multiplier_;
+};
+}
+#endif //MONOPOLY_MOVE_CARD_H

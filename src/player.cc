@@ -25,4 +25,5 @@ namespace monopoly {
     position_ += dice_sum;
     position_ = position_ % num_tiles_;
   }
+}
   

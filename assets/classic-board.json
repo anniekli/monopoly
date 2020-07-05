@@ -444,17 +444,17 @@
     {
       "title": "Advance to Go (Collect $200)",
       "action": "move",
-      "destination": "Go"
+      "destination": 0
     },
     {
       "title": "Advance to Illinois Avenue - If you pass Go, collect $200",
       "action": "move",
-      "destination": "Illinois Avenue"
+      "destination": 24
     },
     {
       "title": "Advance to St. Charles Place - If you pass Go, collect $200",
       "action": "move",
-      "destination": "St. Charles Place"
+      "destination": 11
     },
     {
       "title": "Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.",
@@ -480,7 +480,7 @@
     },
     {
       "title": "Go Back 3 Spaces",
-      "action": "move",
+      "action": "movespaces",
       "count": -3
     },
     {
@@ -496,22 +496,22 @@
     },
     {
       "title": "Pay poor tax of $15",
-      "action": "removefunds",
-      "amount": 15
+      "action": "addfunds",
+      "amount": -15
     },
     {
       "title": "Take a trip to Reading Railroad - If you pass Go, collect $200",
       "action": "move",
-      "destination": "Reading Railroad"
+      "destination": 5
     },
     {
       "title": "Take a walk on the Boardwalk - Advance token to Boardwalk",
       "action": "move",
-      "destination": "Boardwalk"
+      "destination": 39
     },
     {
       "title": "You have been elected Chairman of the Board - Pay each player $50",
-      "action": "removefundstoplayers",
+      "action": "addfundstoplayers",
       "amount": 50
     },
     {
@@ -524,7 +524,7 @@
     {
       "title": "Advance to Go (Collect $200)",
       "action": "move",
-      "destination": "Go"
+      "destination": 0
     },
     {
       "title": "Bank error in your favor - Collect $200 ",
@@ -533,8 +533,8 @@
     },
     {
       "title": "Doctor fee - Pay $50",
-      "action": "removefunds",
-      "amount": 50
+      "action": "addfunds",
+      "amount": -50
     },
     {
       "title": "From sale of stock you get $50",
@@ -573,13 +573,13 @@
     },
     {
       "title": "Pay hospital fees of $100",
-      "action": "removefunds",
-      "amount": 100
+      "action": "addfunds",
+      "amount": -100
     },
     {
       "title": "Pay school fees of $150",
-      "action": "removefunds",
-      "amount": 150
+      "action": "addfunds",
+      "amount": -150
     },
     {
       "title": "Receive $25 consultancy fee",

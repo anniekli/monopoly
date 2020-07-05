@@ -9,6 +9,7 @@
 #include <cinder/gl/Texture.h>
 #include <cinder/Rect.h>
 #include "player.h"
+#include "strategy.h"
 
 using std::vector;
 using std::string;
@@ -38,10 +39,15 @@ class Monopoly : public cinder::app::App {
 
 private:
   void DrawBoard();
+  void DrawPlayerPieces();
   void DrawDice();
   void DrawRollButton();
+  void DrawBuyProperty();
   void RollDice();
   void DrawUpdateCurrentPlayerPosition();
+  void DrawPayRent();
+  void BuyProperty();
+  void DrawCard();
   
   Board board_;
   Player player_;
@@ -58,6 +64,9 @@ private:
   cinder::gl::Texture2dRef boat_img;
   cinder::gl::Texture2dRef wheelbarrow_img;
   
+  vector<Strategy> cpu_strategies_;
+//  Card current_card_;
+  
   float tile_size_ = getWindowWidth() / 13;
   Color background_color = Color(191/255.0f, 219/255.0f, 174/255.0f);
   cinder::Rectf roll_btn_rectf;
@@ -70,10 +79,6 @@ private:
   bool is_card_drawn_;
   size_t num_cpu_;
   
-  
-  void DrawBuyProperty();
-  
-  void DrawPayRent();
 };
 }  // namespace monopoly
 

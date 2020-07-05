@@ -29,7 +29,7 @@ class Tile {
     
     int GetPrice() const { return price_; };
     
-    virtual cinder::Rectf GetRectf() const { return cinder::Rectf(0, 0, 0, 0); };
+    virtual cinder::Rectf GetRectf() const { return {0, 0, 0, 0}; };
     
     virtual cinder::ivec2 GetTileVec() const { return cinder::ivec2(0, 0); };
   

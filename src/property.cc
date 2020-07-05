@@ -3,7 +3,7 @@
 //
 
 #include <board.h>
-#include "property.h"
+#include "Tile/property.h"
 #include <cinder/Rect.h>
 #include <cinder/app/AppBase.h>
 
@@ -133,7 +133,5 @@ namespace monopoly {
     die_one = one;
     die_two = two;
   }
-  
-
   
 }

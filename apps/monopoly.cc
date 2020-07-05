@@ -5,7 +5,7 @@
 #include <cinder/gl/draw.h>
 #include <cinder/gl/gl.h>
 #include <gflags/gflags.h>
-#include <property.h>
+#include <Tile/property.h>
 #include <random>
 #include "cinder/app/MouseEvent.h"
 
@@ -85,6 +85,7 @@ void Monopoly::update() {
     state_ = GameState::kGameOver;
   }
   if (state_ == GameState::kPlayerTurn) {
+    // if user rolls dice
     if (is_roll_btn_clicked_) {
       RollDice();
       size_t dice = die_one + die_two;
@@ -92,29 +93,41 @@ void Monopoly::update() {
       is_roll_btn_clicked_ = false;
       
     } else if (is_player_position_updated_) {
+      
+      // if both player position member variable and onscreen position have
+      // been updated, check if tile is a property
       if (board_.GetTileAtPos(player_.GetPosition())->GetGroup() != g_special) {
         Property *property = dynamic_cast<Property*> (board_.GetTileAtPos
                 (player_.GetPosition()));
-        if (property->GetOwner() != 0 && !is_rent_paid_) {
-          player_.AddMoney(-(property->GetRent()));
+        
+        if (property->GetOwner() == -1) {
+          // if player lands on property that isn't owned, allow buying option
+//          BuyProperty();
+        
+        } else if (property->GetOwner() != 0 && !is_rent_paid_) {
+//          player_.AddMoney(-(property->GetRent()));
           is_rent_paid_ = true;
         }
         
       } else {
+        // if tile is not a property, continue accordingly
+        
         if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
         g_go_to_jail) {
           player_.SetPosition(board_.GetJailPosition());
         
         } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
         g_chance && !is_card_drawn_) {
-          board_.GetChanceCard();
+//          board_.GetChanceCard();
+//          DrawCard();
           
           is_card_drawn_ = true;
         
         } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
                 g_chest && !is_card_drawn_) {
-          board_.GetChestCard();
-          
+//          board_.GetChestCard();
+//          DrawCard();
+  
           is_card_drawn_ = true;
         }
       }
@@ -127,7 +140,7 @@ void Monopoly::draw() {
   
   switch (state_) {
     case GameState::kPlayerStart :
-      DrawDice();
+//      DrawDice();
     
     case GameState::kPlayerTurn :
       if (!is_player_position_updated_) {
@@ -137,10 +150,10 @@ void Monopoly::draw() {
           Property *property = dynamic_cast<Property*> (board_.GetTileAtPos
                   (player_.GetPosition()));
           if (property->GetOwner() == -1) {
-            DrawBuyProperty();
+//            DrawBuyProperty();
           
           } else if (property->GetOwner() != 0) {
-            DrawPayRent();
+//            DrawPayRent();
           }
         }
       }
@@ -156,6 +169,10 @@ void Monopoly::RollDice() {
   
   die_one = one(rng);
   die_two = two(rng);
+}
+
+void Monopoly::BuyProperty() {
+
 }
 
 template <typename C>
@@ -285,6 +302,18 @@ void Monopoly::DrawBoard() {
   }
 }
 
+void Monopoly::DrawPlayerPieces() {
+
+}
+
+void Monopoly::DrawUpdateCurrentPlayerPosition() {
+
+}
+
+void Monopoly::DrawCard() {
+
+}
+
 void Monopoly::DrawBuyProperty() {
 
 }
@@ -305,7 +334,6 @@ void Monopoly::keyDown(KeyEvent event) { }
 void Monopoly::mouseDown(cinder::app::MouseEvent event) {
 
 }
-
 
 
 

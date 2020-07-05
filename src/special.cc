@@ -4,7 +4,7 @@
 
 #include <cinder/app/AppBase.h>
 #include <cinder/Rect.h>
-#include "special.h"
+#include "Tile/special.h"
 
 namespace monopoly {
   
