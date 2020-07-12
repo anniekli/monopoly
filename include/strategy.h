@@ -5,6 +5,8 @@
 #ifndef MONOPOLY_STRATEGY_H
 #define MONOPOLY_STRATEGY_H
 
+#include "board.h"
+
 namespace monopoly {
   enum class TurnAction {
     kBuyProperty
@@ -14,9 +16,13 @@ class Strategy {
 
 public:
   Strategy(){};
+  Strategy(Player player) : player_(player) {};
   
-//  TurnAction GetTurnAction(Board board);
-  
+  TurnAction GetTurnAction(Board board);
+  Player GetPlayer();
+
+private:
+  Player player_;
 };
 }
 

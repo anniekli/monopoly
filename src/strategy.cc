@@ -5,5 +5,9 @@
 #include "strategy.h"
 
 namespace monopoly {
-
+  Player Strategy::GetPlayer() {
+    return Player();
+  }
+  
+  
 }

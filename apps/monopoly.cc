@@ -66,13 +66,13 @@ void Monopoly::setup() {
   wheelbarrow_img = cinder::gl::Texture2d::create(loadImage(loadAsset("wheelbarrow.png")));
   
   if (FLAGS_piece == "dog") {
-    player_ = Player(FLAGS_name, dog_img);
+    player_ = Player(FLAGS_name, 0, dog_img);
   } else if (FLAGS_piece == "iron") {
-    player_ = Player(FLAGS_name, iron_img);
+    player_ = Player(FLAGS_name, 0, iron_img);
   } else if (FLAGS_piece == "boat") {
-    player_ = Player(FLAGS_name, boat_img);
+    player_ = Player(FLAGS_name, 0, boat_img);
   } else {
-    player_ = Player(FLAGS_name, wheelbarrow_img);
+    player_ = Player(FLAGS_name, 0, wheelbarrow_img);
   }
   
   // set all player positions to 0
@@ -100,11 +100,11 @@ void Monopoly::update() {
         Property *property = dynamic_cast<Property*> (board_.GetTileAtPos
                 (player_.GetPosition()));
         
-        if (property->GetOwner() == -1) {
+        if (property->GetOwnerId() == -1) {
           // if player lands on property that isn't owned, allow buying option
 //          BuyProperty();
         
-        } else if (property->GetOwner() != 0 && !is_rent_paid_) {
+        } else if (property->GetOwnerId() != 0 && !is_rent_paid_) {
 //          player_.AddMoney(-(property->GetRent()));
           is_rent_paid_ = true;
         }
@@ -149,10 +149,10 @@ void Monopoly::draw() {
         if (board_.GetTileAtPos(player_.GetPosition())->GetGroup() != g_special) {
           Property *property = dynamic_cast<Property*> (board_.GetTileAtPos
                   (player_.GetPosition()));
-          if (property->GetOwner() == -1) {
+          if (property->GetOwnerId() == -1) {
 //            DrawBuyProperty();
           
-          } else if (property->GetOwner() != 0) {
+          } else if (property->GetOwnerId() != 0) {
 //            DrawPayRent();
           }
         }

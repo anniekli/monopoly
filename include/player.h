@@ -18,8 +18,9 @@ class Player {
 
 public:
   Player(){};
-  Player(std::string name, cinder::gl::Texture2dRef piece)
-    :name_(std::move(name)), piece_(std::move(piece)), money_(2000), in_jail_(false), position_(0) {};
+  Player(std::string name, int id, cinder::gl::Texture2dRef piece)
+    :name_(std::move(name)), id_(id), piece_(std::move(piece)), money_(2000),
+    in_jail_(false), position_(0) {};
     
   std::string GetName();
   cinder::gl::Texture2dRef GetPiece();
@@ -27,6 +28,7 @@ public:
   void PayRent(Tile tile);
   bool IsJailed();
   int GetMoney();
+  int GetId();
   int GetPosition();
   void UpdatePosition(size_t dice_sum);
   void SetPosition(size_t position);
@@ -36,6 +38,7 @@ public:
 private:
   
   std::string name_;
+  int id_;
   cinder::gl::Texture2dRef piece_;
   int money_;
   std::vector<Tile> owned_properties_;

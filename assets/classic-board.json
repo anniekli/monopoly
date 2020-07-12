@@ -517,7 +517,7 @@
     {
       "title": "Your building loan matures - Collect $150",
       "action": "addfunds",
-      "amount": 50
+      "amount": 150
     }
   ],
   "communitychest": [
@@ -553,8 +553,8 @@
     },
     {
       "title": "Grand Opera Night - Collect $50 from every player for opening night seats",
-      "action": "addfundsfromplayers",
-      "amount": 50
+      "action": "addfundstoplayers",
+      "amount": -50
     },
     {
       "title": "Holiday Fund matures - Receive $100",

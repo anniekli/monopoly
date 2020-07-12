@@ -18,7 +18,8 @@ public:
   rent_multiplier)
   : Card{title, action},  group_{group}, rent_multiplier_{rent_multiplier} {};
   
-  void PerformAction(Player &player, const std::vector<Tile*> &tiles) const override;
+  void PerformAction(std::vector<Player> &players,
+                     const std::vector<Tile *> &tiles, int player_id) const override;
   
 private:
   int destination_;

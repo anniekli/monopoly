@@ -13,7 +13,7 @@
 namespace monopoly {
   enum class CardAction {
     kAddFunds,
-    kRemoveFunds,
+    kAddFundsToPlayers,
     kMove,
     kMoveSpaces,
     kMoveNearest
@@ -24,8 +24,9 @@ public:
   Card(){};
   Card(std::string title, CardAction action);
   std::string GetTitle();
-  virtual void PerformAction(Player &player, const std::vector<Tile*> &tiles)
-  const {};
+  virtual void PerformAction(std::vector<Player> &players,
+                             const std::vector<Tile *> &tiles,
+                             int player_id) const {};
 
 protected:
   std::string title_;

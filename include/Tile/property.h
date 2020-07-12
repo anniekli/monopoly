@@ -39,8 +39,8 @@ public:
   Color GetColor() const;
   
   void SetDice(int one, int two);
-  void SetOwner(int owner);
-  int GetOwner();
+  void SetOwnerId(int owner);
+  int GetOwnerId();
 
 private:
   int rent_[6];

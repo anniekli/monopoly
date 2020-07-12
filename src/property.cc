@@ -97,11 +97,11 @@ namespace monopoly {
     return size;
   }
   
-  void Property::SetOwner(int owner) {
+  void Property::SetOwnerId(int owner) {
     owner_ = owner;
   }
   
-  int Property::GetOwner() {
+  int Property::GetOwnerId() {
     return owner_;
   }
   

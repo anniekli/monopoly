@@ -9,7 +9,6 @@
 #include <cinder/gl/Texture.h>
 #include <cinder/Rect.h>
 #include "player.h"
-#include "strategy.h"
 
 using std::vector;
 using std::string;
@@ -64,7 +63,7 @@ private:
   cinder::gl::Texture2dRef boat_img;
   cinder::gl::Texture2dRef wheelbarrow_img;
   
-  vector<Strategy> cpu_strategies_;
+  vector<Player> cpus_;
 //  Card current_card_;
   
   float tile_size_ = getWindowWidth() / 13;

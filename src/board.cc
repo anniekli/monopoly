@@ -3,6 +3,7 @@
 //
 
 #include <cinder/app/AppBase.h>
+#include <Card/funds.h>
 #include "board.h"
 #include "Tile/property.h"
 #include "Tile/special.h"
@@ -89,7 +90,15 @@ namespace monopoly {
       
       } else if (chance["action"] == "movespaces") {
         my_card = new Move(chance["title"], CardAction::kMoveSpaces,
-                chance["count"]);
+                           chance["count"]);
+      
+      } else if (chance["action"] == "addfunds") {
+        my_card = new Funds(chance["title"], CardAction::kAddFunds,
+                            chance["amount"]);
+        
+      } else if (chance["action"] == "addfundstoplayers") {
+        my_card = new Funds(chance["title"], CardAction::kAddFundsToPlayers,
+                chance["amount"]);
       }
       
 //      chance_cards_.push_back(my_card);

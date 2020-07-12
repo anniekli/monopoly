@@ -17,6 +17,10 @@ namespace monopoly {
     return position_;
   }
   
+  int Player::GetId() {
+    return id_;
+  }
+  
   void Player::SetPosition(size_t position) {
     position_ = position;
   }
