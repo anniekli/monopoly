@@ -40,3 +40,7 @@ whether to collect $200 when passing go, and number of CPUs
 - Started working on gameplay
 ### 6/21/2020
 - Start working on allowing player pieces to move on board
+### 11/23/2020
+- Fixed unresolved external error--missing implementation of Card constructor
+    - Begin fixing object decomposition errors--Tile, Card, and Player should
+     not store Board objects, but they can take in a Board in their methods
