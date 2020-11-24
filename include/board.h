@@ -24,6 +24,7 @@ extern const std::string g_chest;
 extern const std::string g_water;
 extern const std::string g_electricity;
 extern const std::string g_go_to_jail;
+extern const std::string g_jail;
 
 using std::string;
 using json = nlohmann::json;

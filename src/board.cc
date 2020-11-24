@@ -93,6 +93,10 @@ namespace monopoly {
         my_card = new Move(chance["title"], CardAction::kMoveSpaces,
                            chance["count"]);
       
+      } else if (chance["action"] == "jail") {
+        my_card = new Move(chance["title"], CardAction::kJail,
+                chance["subaction"]);
+      
       } else if (chance["action"] == "addfunds") {
         my_card = new Funds(chance["title"], CardAction::kAddFunds,
                             chance["amount"]);
@@ -100,15 +104,19 @@ namespace monopoly {
       } else if (chance["action"] == "addfundstoplayers") {
         my_card = new Funds(chance["title"], CardAction::kAddFundsToPlayers,
                 chance["amount"]);
+        
+      } else if (chance["action"] == "propertycharges") {
+        my_card = new Funds(chance["title"], CardAction::kPropertyCharges,
+                chance["house"], chance["hotel"]);
       }
       
-//      chance_cards_.push_back(my_card);
+      chance_cards_.push_back(my_card);
     }
   }
   
   int Board::GetJailPosition() {
     for (auto& tile : tiles) {
-      if (tile->GetName() == "Jail") {
+      if (tile->GetName() == g_jail) {
         return tile->GetPosition();
       }
     }

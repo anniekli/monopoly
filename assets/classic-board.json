@@ -491,8 +491,8 @@
     {
       "title": "Make general repairs on all your property - For each house pay $25 - For each hotel $100",
       "action": "propertycharges",
-      "buildings": 25,
-      "hotels": 100
+      "house": 25,
+      "hotel": 100
     },
     {
       "title": "Pay poor tax of $15",

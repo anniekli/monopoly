@@ -15,15 +15,17 @@ public:
   Funds(std::string title, CardAction action, int amount)
   : Card{title, action}, amount_{amount} {};
   
-  void PerformAction(const std::vector<Tile*> &tiles, int player_id) const override;
-
-
+  Funds(std::string title, CardAction action, int house, int hotel)
+  : Card{title, action}, house_charge{house}, hotel_charge{hotel} {};
+  
+  void PerformAction(std::vector<Player> &players,
+          const std::vector<Tile *> &tiles, int player_id) const override;
+  
 private:
   int amount_;
+  int house_charge;
+  int hotel_charge;
 };
-
 }
-
-
 
 #endif //MONOPOLY_FUNDS_H

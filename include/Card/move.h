@@ -15,15 +15,20 @@ public:
   Move(std::string title, CardAction action, int destination)
   : Card{title, action}, destination_{destination} {};
   
+  Move(std::string title, CardAction action, std::string subaction)
+          : Card{title, action}, subaction_{subaction} {};
+  
   Move(std::string title, CardAction action, std::string group, int
   rent_multiplier)
   : Card{title, action},  group_{group}, rent_multiplier_{rent_multiplier} {};
   
-  void PerformAction(const std::vector<Tile *> &tiles, int player_id) const override;
+  void PerformAction(std::vector<Player> &players,
+          const std::vector<Tile *> &tiles, int player_id) const override;
   
 private:
   int destination_;
   std::string group_;
+  std::string subaction_;
   int rent_multiplier_;
 };
 }

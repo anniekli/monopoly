@@ -44,7 +44,7 @@ private:
   std::vector<Tile*> owned_properties_;
   bool in_jail_;
   size_t position_;
-  size_t num_tiles_ = 40;
+  static const size_t num_tiles_ = 40;
   
   
 };
