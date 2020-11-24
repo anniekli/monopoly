@@ -8,6 +8,7 @@
 #include "Tile/property.h"
 #include "Tile/special.h"
 #include "Card/move.h"
+#include "Card/card.h"
 
 
 namespace monopoly {

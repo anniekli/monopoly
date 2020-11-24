@@ -15,8 +15,8 @@ using cinder::Color;
 
 class Property: public Tile {
 public:
-  Property(const std::string &name, int position, int price, int rent[], int
-  house_cost, const std::string &group, int rgb[])
+  Property(std::string name, int position, int price, int rent[], int
+  house_cost, std::string group, int rgb[])
           : Tile{name, position, price, group}, house_cost_(house_cost),
           num_houses_{0} {
     

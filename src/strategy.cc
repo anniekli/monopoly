@@ -6,8 +6,28 @@
 
 namespace monopoly {
   Player Strategy::GetPlayer() {
-    return Player();
+    return player_;
   }
   
+  void Strategy::PerformAction(Board &board) {
+    if (board.GetTileAtPos(player_.GetPosition())->GetGroup() != g_special) {
   
+      Property *property = dynamic_cast<Property*> (board.GetTileAtPos
+              (player_.GetPosition()));
+      
+      if (property->GetOwnerId() == -1 && player_.GetMoney() >= property->GetPrice()) {
+        property->SetOwnerId(player_.GetId());
+        player_.AddMoney(0 - property->GetPrice());
+        
+      } else if (property->GetOwnerId() != player_.GetId()) {
+        if (player_.GetMoney() >= property->GetRent()) {
+          player_.AddMoney(0 - property->GetRent());
+        } else {
+          for (Property *street : board.GetStreets()) {
+          
+          }
+        }
+      }
+    }
+  }
 }

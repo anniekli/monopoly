@@ -5,7 +5,8 @@
 #ifndef MONOPOLY_MOVE_CARD_H
 #define MONOPOLY_MOVE_CARD_H
 
-#include <board.h>
+
+#include "card.h"
 
 namespace monopoly {
 
@@ -18,8 +19,7 @@ public:
   rent_multiplier)
   : Card{title, action},  group_{group}, rent_multiplier_{rent_multiplier} {};
   
-  void PerformAction(std::vector<Player> &players,
-                     const std::vector<Tile *> &tiles, int player_id) const override;
+  void PerformAction(const std::vector<Tile *> &tiles, int player_id) const override;
   
 private:
   int destination_;

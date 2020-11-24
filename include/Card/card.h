@@ -4,11 +4,9 @@
 
 #ifndef MONOPOLY_CARD_H
 #define MONOPOLY_CARD_H
-
-#include <board.h>
-#include "board.h"
-#include "player.h"
-
+#include <string>
+#include <vector>
+#include <Tile/tile.h>
 
 namespace monopoly {
   enum class CardAction {
@@ -16,17 +14,18 @@ namespace monopoly {
     kAddFundsToPlayers,
     kMove,
     kMoveSpaces,
-    kMoveNearest
+    kMoveNearest,
+    kPropertyCharges,
+    kJail
   };
 
 class Card {
 public:
   Card(){};
-  Card(std::string title, CardAction action);
+  Card(std::string title, CardAction action): title_(title), action_(action) {};
   std::string GetTitle();
-  virtual void PerformAction(std::vector<Player> &players,
-                             const std::vector<Tile *> &tiles,
-                             int player_id) const {};
+  virtual void PerformAction(const std::vector<Tile*> &tiles,
+                             int player_id) const{};
 
 protected:
   std::string title_;

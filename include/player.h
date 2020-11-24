@@ -41,7 +41,7 @@ private:
   int id_;
   cinder::gl::Texture2dRef piece_;
   int money_;
-  std::vector<Tile> owned_properties_;
+  std::vector<Tile*> owned_properties_;
   bool in_jail_;
   size_t position_;
   size_t num_tiles_ = 40;

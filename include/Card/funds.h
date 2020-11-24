@@ -15,8 +15,7 @@ public:
   Funds(std::string title, CardAction action, int amount)
   : Card{title, action}, amount_{amount} {};
   
-  void PerformAction(std::vector<Player> &players,
-                     const std::vector<Tile *> &tiles, int player_id) const override;
+  void PerformAction(const std::vector<Tile*> &tiles, int player_id) const override;
 
 
 private:

@@ -6,6 +6,7 @@
 #define MONOPOLY_STRATEGY_H
 
 #include "board.h"
+#include "player.h"
 
 namespace monopoly {
   enum class TurnAction {
@@ -18,7 +19,7 @@ public:
   Strategy(){};
   Strategy(Player player) : player_(player) {};
   
-  TurnAction GetTurnAction(Board board);
+  void PerformAction(Board &board);
   Player GetPlayer();
 
 private:

@@ -14,12 +14,14 @@ namespace monopoly {
 
 class Tile {
   public:
-//    Tile(){};
+    Tile();
     
-    Tile(std::string name, const int position, const int price,
+    Tile(std::string name, int position, int price,
             std::string group)
-            : name_(std::move(name)), position_(position), price_(price),
-            group_(std::move(group)) {};
+            : name_(name), position_(position), price_(price),
+            group_(group) {};
+
+    Tile(Tile&) = default;
     
     std::string GetName() const { return name_; };
     
@@ -35,13 +37,13 @@ class Tile {
   
   
   private:
-    const std::string name_;
+    std::string name_;
   
   protected:
-    const int price_;
-    const std::string group_;
-    const int position_;
-    float tile_size_ = cinder::app::getWindowWidth() / 13;
+    int price_;
+    std::string group_;
+    int position_;
+    const float tile_size_ = cinder::app::getWindowWidth() / 13;
   };
 }
 

@@ -4,14 +4,15 @@
 
 #ifndef MONOPOLY_BOARD_H
 #define MONOPOLY_BOARD_H
+#pragma once
 
 #include "Tile/tile.h"
 #include "Tile/property.h"
-#include "Card/card.h"
 #include <string>
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include <vector>
+#include "Card/card.h"
 
 namespace monopoly {
 
@@ -23,7 +24,6 @@ extern const std::string g_chest;
 extern const std::string g_water;
 extern const std::string g_electricity;
 extern const std::string g_go_to_jail;
-
 
 using std::string;
 using json = nlohmann::json;

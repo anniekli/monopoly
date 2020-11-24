@@ -13,8 +13,8 @@ namespace monopoly {
 class Special : public Tile {
 
 public:
-  Special(const std::string &name, int position, int price,
-           const std::string &group)
+  Special(std::string name, int position, int price,
+           std::string group)
           : Tile{name, position, price, group} {}
   
   cinder::Rectf GetRectf() const override;
