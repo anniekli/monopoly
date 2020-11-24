@@ -589,8 +589,8 @@
     {
       "title": "You are assessed for street repairs - $40 per house - $115 per hotel",
       "action": "propertycharges",
-      "buildings": 40,
-      "hotels": 115
+      "house": 40,
+      "hotel": 115
     },
     {
       "title": "You have won second prize in a beauty contest - Collect $10",

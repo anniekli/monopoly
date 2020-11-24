@@ -12,6 +12,12 @@ namespace monopoly {
 
 class Move : public Card {
 public:
+  /**
+   * Use for kMove, kMoveSpaces
+   * @param title Title of the card
+   * @param action CardAction enum representing the action of the card
+   * @param destination
+   */
   Move(std::string title, CardAction action, int destination)
   : Card{title, action}, destination_{destination} {};
   
@@ -22,6 +28,13 @@ public:
   rent_multiplier)
   : Card{title, action},  group_{group}, rent_multiplier_{rent_multiplier} {};
   
+  /**
+   * Performs the action of a card that moves the player.
+   * Possible actions include: kMove, kMoveNearest, kMoveSpaces, kJail
+   * @param players All players in the game
+   * @param tiles All tiles on the board
+   * @param player_id The id of the current player
+   */
   void PerformAction(std::vector<Player> &players,
           const std::vector<Tile *> &tiles, int player_id) const override;
   

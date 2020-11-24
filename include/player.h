@@ -20,7 +20,7 @@ public:
   Player(){};
   Player(std::string name, int id, cinder::gl::Texture2dRef piece)
     :name_(std::move(name)), id_(id), piece_(std::move(piece)), money_(2000),
-    in_jail_(false), position_(0) {};
+    in_jail_(false), position_(0), num_get_out_jail_cards_(0) {};
     
   std::string GetName();
   cinder::gl::Texture2dRef GetPiece();
@@ -29,7 +29,10 @@ public:
   bool IsJailed();
   int GetMoney();
   int GetId();
-  int GetPosition();
+  size_t GetPosition();
+  size_t GetNumGetOutJailCards();
+  void AddGetOutJailCard();
+  void UseGetOutJailCard();
   void UpdatePosition(size_t dice_sum);
   void SetPosition(size_t position);
   void SetIsJailed(bool is_jailed);
@@ -45,6 +48,7 @@ private:
   bool in_jail_;
   size_t position_;
   static const size_t num_tiles_ = 40;
+  size_t num_get_out_jail_cards_;
   
   
 };

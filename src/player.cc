@@ -13,12 +13,30 @@ namespace monopoly {
     return money_;
   }
   
-  int Player::GetPosition() {
+  size_t Player::GetPosition() {
     return position_;
   }
   
   int Player::GetId() {
     return id_;
+  }
+  
+  size_t Player::GetNumGetOutJailCards() {
+    return num_get_out_jail_cards_;
+  }
+  
+  void Player::AddGetOutJailCard() {
+    num_get_out_jail_cards_++;
+  }
+  
+  void Player::UseGetOutJailCard() {
+    if (num_get_out_jail_cards_ > 0) {
+      num_get_out_jail_cards_--;
+    }
+  }
+  
+  void Player::SetIsJailed(bool is_jailed) {
+    in_jail_ = is_jailed;
   }
   
   void Player::SetPosition(size_t position) {

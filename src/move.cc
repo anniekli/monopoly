@@ -22,16 +22,17 @@ namespace monopoly {
     } else if (action_ == CardAction::kMoveNearest) {
       int curr_pos = player.GetPosition() + 1;
       // this loop simulates going around the board once
-      for (int i = 0; i < num_tiles_; i++) {
+      for (size_t i = 0; i < num_tiles_; i++) {
         if (tiles.at(curr_pos % num_tiles_)->GetGroup() == group_) {
           player.SetPosition(curr_pos);
-          return;
+          // TODO: implement rent-multiplier part of card
   
         } else {
           curr_pos++;
         }
       }
       return;
+      
     } else if (action_ == CardAction::kMoveSpaces) {
       player.UpdatePosition(destination_);
       return;
@@ -46,8 +47,8 @@ namespace monopoly {
           }
         }
       } else {
-        // TODO: add attribute to player that gives them get out of jail free
-        //  card
+        player.AddGetOutJailCard();
+        return;
       }
     }
   }

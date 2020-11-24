@@ -48,9 +48,19 @@ public:
 
 private:
   
+  /**
+   * Creates Tile objects from the json and populates the vector of Tiles with
+   * the Tile objects
+   */
   void PopulateTiles();
-  void PopulateChanceCards();
-  void PopulateCommunityChestCards();
+  
+  /**
+   * Creates Card objects from the json and populates the vector of cards
+   * with the Card objects
+   * @param card_type String representing card type in the json file
+   * @param card_vec Vector that the cards should be added to
+   */
+  void PopulateCards(const std::string& card_type, std::vector<Card*> card_vec);
   
   std::ifstream infile;
   json j;
