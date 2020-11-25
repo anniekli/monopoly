@@ -4,7 +4,6 @@
 
 #ifndef MONOPOLY_BOARD_H
 #define MONOPOLY_BOARD_H
-#pragma once
 
 #include "Tile/tile.h"
 #include "Tile/property.h"
@@ -36,8 +35,20 @@ public:
   Board(std::string &filepath);
   
   Tile GetTile();
-//  Card GetChanceCard();
-//  Card GetChestCard();
+  
+  /**
+   * Draws (as in picks) the next Chance card from the deck and
+   * removes it. This method uses pop_back() for O(1) time complexity.
+   * @return Chance card that was drawn
+   */
+  Card* DrawChanceCard();
+  
+  /**
+   * Draws (as in picks) the next Community Chest card from the deck and
+   * removes it. This method uses pop_back() for O(1) time complexity.
+   * @return Community Chest card that was drawn
+   */
+  Card* DrawChestCard();
   std::vector<Tile*> GetTiles();
   Tile* GetTileAtPos(int position);
   std::vector<Property*> GetStreets() const;
@@ -56,9 +67,9 @@ private:
   
   /**
    * Creates Card objects from the json and populates the vector of cards
-   * with the Card objects
+   * with the Card objects, then shuffles the cards so they can be used
    * @param card_type String representing card type in the json file
-   * @param card_vec Vector that the cards should be added to
+   * @param card_vec Vector that Card objects should be added to
    */
   void PopulateCards(const std::string& card_type, std::vector<Card*> card_vec);
   
@@ -73,6 +84,5 @@ private:
   std::vector<Card*> community_chest_cards_;
 };
 }
-
 
 #endif //MONOPOLY_BOARD_H

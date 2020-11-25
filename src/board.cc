@@ -4,6 +4,7 @@
 
 #include <cinder/app/AppBase.h>
 #include <Card/funds.h>
+#include <random>
 #include "board.h"
 #include "Tile/property.h"
 #include "Tile/special.h"
@@ -117,6 +118,11 @@ namespace monopoly {
       }
       card_vec.push_back(my_card);
     }
+  
+    // shuffle the vector of cards
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(card_vec.begin(), card_vec.end(), g);
   }
   
   int Board::GetJailPosition() {
@@ -127,6 +133,18 @@ namespace monopoly {
     }
     // if jail does not exist, there is an error
     return -1;
+  }
+  
+  Card* Board::DrawChestCard() {
+    Card *card = community_chest_cards_.back();
+    community_chest_cards_.pop_back();
+    return card;
+  }
+  
+  Card * Board::DrawChanceCard() {
+    Card *card = chance_cards_.back();
+    chance_cards_.pop_back();
+    return card;
   }
   
   std::vector<Tile*> Board::GetTiles() {
