@@ -44,3 +44,12 @@ whether to collect $200 when passing go, and number of CPUs
 - Fixed unresolved external error--missing implementation of Card constructor
     - Begin fixing object decomposition errors--Tile, Card, and Player should
      not store Board objects, but they can take in a Board in their methods
+### 11/24/2020
+- Populate both Community Chest and Chance cards in Board class
+    - [ ] For Move class, allow MoveNearest action to charge rent multiplier
+    - [ ] For Funds class, allow purchased properties to be viewed for
+     property charges
+### 11/25/2020
+- Shuffle cards and allow them to be drawn from the deck. Also draw them onto
+ the screen. Rent is now accurate.
+- Note: Color objects CANNOT be const references!
