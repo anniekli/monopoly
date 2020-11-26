@@ -78,65 +78,77 @@ void Monopoly::setup() {
   // set all player positions to 0
   player_.SetPosition(0);
   
+  current_card_ = board_.DrawChestCard();
 }
 
 void Monopoly::update() {
   if (player_.GetMoney() == 0) {
     state_ = GameState::kGameOver;
   }
-  if (state_ == GameState::kPlayerTurn) {
-    // if user rolls dice
-    if (is_roll_btn_clicked_) {
-      RollDice();
-      size_t dice = die_one + die_two;
-      player_.UpdatePosition(dice);
-      is_roll_btn_clicked_ = false;
+  
+  switch (state_) {
+    case GameState::kGameOver :
+      return;
+    
+    case GameState::kPlayerTurn :
+      // if user rolls dice
+      if (is_roll_btn_clicked_) {
+        RollDice();
+        size_t dice = die_one + die_two;
+        player_.UpdatePosition(dice);
+        is_roll_btn_clicked_ = false;
+    
+      } else if (is_player_position_updated_) {
+    
+        // if both player position member variable and onscreen position have
+        // been updated, check if tile is a property (not in the "Special" group)
+        if (board_.GetTileAtPos(player_.GetPosition())->GetGroup() != g_special) {
+          Property *property = dynamic_cast<Property*> (board_.GetTileAtPos
+                  (player_.GetPosition()));
       
-    } else if (is_player_position_updated_) {
-      
-      // if both player position member variable and onscreen position have
-      // been updated, check if tile is a property
-      if (board_.GetTileAtPos(player_.GetPosition())->GetGroup() != g_special) {
-        Property *property = dynamic_cast<Property*> (board_.GetTileAtPos
-                (player_.GetPosition()));
-        
-        if (property->GetOwnerId() == -1) {
-          // if player lands on property that isn't owned, allow buying option
+          if (property->GetOwnerId() == -1) {
+            // if player lands on property that isn't owned, allow buying option
 //          BuyProperty();
         
-        } else if (property->GetOwnerId() != 0 && !is_rent_paid_) {
-//          player_.AddMoney(-(property->GetRent()));
-          is_rent_paid_ = true;
-        }
+          } else if (property->GetOwnerId() != 0 && !is_rent_paid_) {
+            // Otherwise, if it isn't owned by them, enforce the rent.
+            player_.AddMoney(-(property->GetRent(die_one, die_two)));
+            is_rent_paid_ = true;
+          }
+      
+        } else {
+          // if tile is not a property, continue accordingly
+          if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
+              g_go_to_jail) {
+            player_.SetPosition(board_.GetJailPosition());
         
-      } else {
-        // if tile is not a property, continue accordingly
+          } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
+                     g_chance && !is_card_drawn_) {
+            current_card_ = board_.DrawChanceCard();
         
-        if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
-        g_go_to_jail) {
-          player_.SetPosition(board_.GetJailPosition());
-        
-        } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
-        g_chance && !is_card_drawn_) {
-//          board_.GetChanceCard();
+            // Call perform action, but vector of players must include current
+            // player as well
+//          current_card_->PerformAction(cpus_, board_.GetTiles(), player_
+//          .GetId());
 //          DrawCard();
-          
-          is_card_drawn_ = true;
         
-        } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
-                g_chest && !is_card_drawn_) {
-//          board_.GetChestCard();
+            is_card_drawn_ = true;
+        
+          } else if (board_.GetTileAtPos(player_.GetPosition())->GetName() ==
+                     g_chest && !is_card_drawn_) {
+            current_card_ = board_.DrawChestCard();
 //          DrawCard();
-  
-          is_card_drawn_ = true;
+        
+            is_card_drawn_ = true;
+          }
         }
       }
-    }
   }
 }
 
 void Monopoly::draw() {
   DrawBoard();
+  DrawCard();
   
   switch (state_) {
     case GameState::kPlayerStart :
@@ -144,9 +156,11 @@ void Monopoly::draw() {
     
     case GameState::kPlayerTurn :
       if (!is_player_position_updated_) {
+      // animate the player moving
       
       } else if (is_player_position_updated_) {
         if (board_.GetTileAtPos(player_.GetPosition())->GetGroup() != g_special) {
+          // If the player is currently on a property
           Property *property = dynamic_cast<Property*> (board_.GetTileAtPos
                   (player_.GetPosition()));
           if (property->GetOwnerId() == -1) {
@@ -155,6 +169,11 @@ void Monopoly::draw() {
           } else if (property->GetOwnerId() != 0) {
 //            DrawPayRent();
           }
+        
+        } else if (is_card_drawn_) {
+          // If the player is not on a property and a card was drawn, draw
+          // the card
+//          DrawCard();
         }
       }
   }
@@ -177,12 +196,12 @@ void Monopoly::BuyProperty() {
 
 template <typename C>
 void PrintText(const string& text, const C& color, const cinder::ivec2& size,
-               const cinder::vec2& loc) {
+               const cinder::vec2& loc, int font_size = 18) {
   cinder::gl::color(color);
   
   auto box = TextBox()
           .alignment(TextBox::CENTER)
-          .font(cinder::Font(kNormalFont, 18))
+          .font(cinder::Font(kNormalFont, font_size))
           .size(size)
           .color(color)
           .text(text);
@@ -311,7 +330,31 @@ void Monopoly::DrawUpdateCurrentPlayerPosition() {
 }
 
 void Monopoly::DrawCard() {
+  std::string chance = "chance";
+  std::string chest = "communitychest";
+  Rectf card_rectf = {getWindowCenter().x - (tile_size_ * 3/2),
+                      getWindowCenter().y - (tile_size_ * 3/4),
+                      getWindowCenter().x + (tile_size_ * 3/2),
+                      getWindowCenter().y + (tile_size_ * 3/4)};
+  cinder::ivec2 size = {tile_size_ * 2, tile_size_};
 
+  cinder::gl::color(current_card_->GetColor());
+  cinder::gl::drawSolidRect(card_rectf);
+  cinder::gl::color(Color::black());
+  cinder::gl::drawStrokedRect(card_rectf);
+  std::stringstream type;
+  if (current_card_->GetType() == "chance") {
+    type << g_chance;
+  } else {
+    type << g_chest;
+  }
+  std::stringstream title;
+  title << current_card_->GetTitle();
+  PrintText(type.str(), Color::black(), size,
+            {card_rectf.getCenter().x, card_rectf.getCenter().y - (tile_size_
+            / 2)}, 24);
+  PrintText(title.str(), Color::black(), size,
+            card_rectf.getCenter(), 20);
 }
 
 void Monopoly::DrawBuyProperty() {

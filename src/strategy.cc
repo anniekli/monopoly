@@ -16,17 +16,17 @@ namespace monopoly {
               (player_.GetPosition()));
       
       if (property->GetOwnerId() == -1 && player_.GetMoney() >= property->GetPrice()) {
-        property->SetOwnerId(player_.GetId());
+        property->BuyProperty(player_.GetId());
         player_.AddMoney(0 - property->GetPrice());
         
       } else if (property->GetOwnerId() != player_.GetId()) {
-        if (player_.GetMoney() >= property->GetRent()) {
-          player_.AddMoney(0 - property->GetRent());
-        } else {
-          for (Property *street : board.GetStreets()) {
-          
-          }
-        }
+//        if (player_.GetMoney() >= property->GetRent()) {
+//          player_.AddMoney(0 - property->GetRent());
+//        } else {
+//          for (Property *street : board.GetStreets()) {
+//
+//          }
+//        }
       }
     }
   }

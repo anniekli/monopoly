@@ -27,6 +27,9 @@ namespace monopoly {
       PopulateCards("chance", chance_cards_);
       PopulateCards("communitychest", community_chest_cards_);
     }
+    
+    std::cout << chance_cards_.size();
+    std::cout << community_chest_cards_.size();
   }
   
   void Board::PopulateTiles() {
@@ -83,37 +86,37 @@ namespace monopoly {
     }
   }
   
-  void Board::PopulateCards(const std::string& card_type, std::vector<Card*>
+  void Board::PopulateCards(const std::string& card_type, std::vector<Card*> &
           card_vec) {
     
     for (const auto& card : j[card_type]) {
       Card *my_card;
       if (card["action"] == "move") {
-        my_card = new Move(card["title"], CardAction::kMove,
+        my_card = new Move(card["title"], card_type, CardAction::kMove,
                            (int) card["destination"]);
     
       } else if (card["action"] == "movenearest") {
-        my_card = new Move(card["title"], CardAction::kMoveNearest,
+        my_card = new Move(card["title"], card_type, CardAction::kMoveNearest,
                            card["group"], card["rentmultiplier"]);
     
       } else if (card["action"] == "movespaces") {
-        my_card = new Move(card["title"], CardAction::kMoveSpaces,
+        my_card = new Move(card["title"], card_type, CardAction::kMoveSpaces,
                            (int) card["count"]);
     
       } else if (card["action"] == "jail") {
-        my_card = new Move(card["title"], CardAction::kJail,
+        my_card = new Move(card["title"], card_type, CardAction::kJail,
                            card["subaction"].get<string>());
     
       } else if (card["action"] == "addfunds") {
-        my_card = new Funds(card["title"], CardAction::kAddFunds,
+        my_card = new Funds(card["title"], card_type, CardAction::kAddFunds,
                             card["amount"]);
     
       } else if (card["action"] == "addfundstoplayers") {
-        my_card = new Funds(card["title"], CardAction::kAddFundsToPlayers,
+        my_card = new Funds(card["title"], card_type, CardAction::kAddFundsToPlayers,
                             card["amount"]);
     
       } else if (card["action"] == "propertycharges") {
-        my_card = new Funds(card["title"], CardAction::kPropertyCharges,
+        my_card = new Funds(card["title"], card_type, CardAction::kPropertyCharges,
                             card["house"], card["hotel"]);
       }
       card_vec.push_back(my_card);
@@ -125,7 +128,7 @@ namespace monopoly {
     std::shuffle(card_vec.begin(), card_vec.end(), g);
   }
   
-  int Board::GetJailPosition() {
+  int Board::GetJailPosition() const {
     for (auto& tile : tiles) {
       if (tile->GetName() == g_jail) {
         return tile->GetPosition();
@@ -141,29 +144,29 @@ namespace monopoly {
     return card;
   }
   
-  Card * Board::DrawChanceCard() {
+  Card* Board::DrawChanceCard() {
     Card *card = chance_cards_.back();
     chance_cards_.pop_back();
     return card;
   }
   
-  std::vector<Tile*> Board::GetTiles() {
+  const std::vector<Tile *> & Board::GetTiles() const {
     return tiles;
   }
   
-  Tile* Board::GetTileAtPos(int position) {
+  Tile* Board::GetTileAtPos(int position) const {
     return tiles.at(position);
   }
   
-  std::vector<Property*> Board::GetStreets() const {
+  const std::vector<Property*>& Board::GetStreets() const {
     return street_tiles_;
   }
 
-  std::vector<Property*> Board::GetRailroads() const {
+  const std::vector<Property*>& Board::GetRailroads() const {
     return railroad_tiles_;
   }
 
-  std::vector<Property *> Board::GetUtilities() const {
+  const std::vector<Property*>& Board::GetUtilities() const {
     return utility_tiles_;
   }
   

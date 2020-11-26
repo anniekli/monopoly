@@ -34,7 +34,11 @@ public:
   Board(){};
   Board(std::string &filepath);
   
-  Tile GetTile();
+  
+  /**
+   * Draws the tiles on the screen.
+   */
+  void DrawTiles() const;
   
   /**
    * Draws (as in picks) the next Chance card from the deck and
@@ -49,12 +53,21 @@ public:
    * @return Community Chest card that was drawn
    */
   Card* DrawChestCard();
-  std::vector<Tile*> GetTiles();
-  Tile* GetTileAtPos(int position);
-  std::vector<Property*> GetStreets() const;
-  std::vector<Property*> GetRailroads() const;
-  std::vector<Property*> GetUtilities() const;
-  int GetJailPosition();
+  
+  const std::vector<Tile*>& GetTiles() const;
+  
+  /**
+   * Gets the Tile object at a certain position on the board. The object can
+   * be modified in order to allow the user to purchase the property, buy
+   * houses, etc.
+   * @param position The position of the tile on the board
+   * @return A non-const pointer to the Tile object
+   */
+  Tile* GetTileAtPos(int position) const;
+  const std::vector<Property*>& GetStreets() const;
+  const std::vector<Property*>& GetRailroads() const;
+  const std::vector<Property*>& GetUtilities() const;
+  int GetJailPosition() const;
   friend Property;
 
 private:
@@ -71,7 +84,7 @@ private:
    * @param card_type String representing card type in the json file
    * @param card_vec Vector that Card objects should be added to
    */
-  void PopulateCards(const std::string& card_type, std::vector<Card*> card_vec);
+  void PopulateCards(const std::string& card_type, std::vector<Card*>& card_vec);
   
   std::ifstream infile;
   json j;

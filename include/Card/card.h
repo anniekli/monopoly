@@ -8,6 +8,7 @@
 #include <vector>
 #include <Tile/tile.h>
 #include <player.h>
+#include <cinder/Color.h>
 
 namespace monopoly {
   enum class CardAction {
@@ -23,15 +24,33 @@ namespace monopoly {
 class Card {
 public:
   Card(){};
-  Card(std::string title, CardAction action)
-  : title_(title), action_(action){};
-  std::string GetTitle();
+  Card(std::string title, std::string type, CardAction action)
+  : title_(title), type_(type), action_(action){};
+  
+  const std::string& GetTitle() const;
+  const std::string& GetType() const;
+  
+  /**
+   * Gets the color of the card based on its type (orange-red for chance cards,
+   * yellow for community chest cards)
+   * @return Color object representing the color. This CANNOT be a const
+   * reference!
+   */
+  cinder::Color GetColor() const;
+  
+  /**
+   * Performs the action described on the card
+   * @param players Vector of all the players in the game
+   * @param tiles
+   * @param player_id
+   */
   virtual void PerformAction(std::vector<Player> &players,
                              const std::vector<Tile *> &tiles,
                              int player_id) const {};
 
 protected:
   std::string title_;
+  std::string type_;
   CardAction action_;
   const size_t num_tiles_ = 40;
   

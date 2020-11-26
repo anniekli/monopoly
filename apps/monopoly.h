@@ -18,13 +18,13 @@ using cinder::Color;
 namespace monopoly {
 
 enum class GameState {
-  kStart,
-  kPlaying,
-  kPlayerStart,
-  kPlayerTurn,
-  kRollDice,
-  kCPUTurn,
-  kGameOver,
+  kStart, // Start of the game
+  kPlaying, // Game is currently being played
+  kPlayerStart, // Start of the user's turn (used for initializing variables)
+  kPlayerTurn, // Currently is the user's turn
+  kRollDice, // Dice are being rolled
+  kCPUTurn, // Currently is the turn of the CPUs
+  kGameOver, // Game is over
 };
 
 class Monopoly : public cinder::app::App {
@@ -37,15 +37,35 @@ class Monopoly : public cinder::app::App {
   void mouseDown(cinder::app::MouseEvent event) override;
 
 private:
+  /**
+   * Draws the tiles on the board, along with the background color
+   */
   void DrawBoard();
+  /**
+   * Draws the pieces representing each player on the tiles
+   */
   void DrawPlayerPieces();
+  /**
+   * Draws the dice to show their values. Also draws the animation when they
+   * are rolled.
+   */
   void DrawDice();
+  /**
+   * Draws the button that allows the user to roll the dice when it is their
+   * turn
+   */
   void DrawRollButton();
   void DrawBuyProperty();
   void RollDice();
+  /**
+   * Draws the animation moving the current player's piece.
+   */
   void DrawUpdateCurrentPlayerPosition();
   void DrawPayRent();
   void BuyProperty();
+  /**
+   * Draws the current Chance/Community Chest card
+   */
   void DrawCard();
   
   Board board_;
@@ -64,7 +84,7 @@ private:
   cinder::gl::Texture2dRef wheelbarrow_img;
   
   vector<Player> cpus_;
-//  Card current_card_;
+  Card* current_card_;
   
   float tile_size_ = getWindowWidth() / 13;
   Color background_color = Color(191/255.0f, 219/255.0f, 174/255.0f);

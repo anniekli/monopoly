@@ -30,29 +30,74 @@ public:
     }
   }
   
+  /**
+   * Gets the Rectf object representing the position of the tile
+   * @return Rectf of the position of the tile
+   */
   cinder::Rectf GetRectf() const override;
+  
+  /**
+   * Gets the vec2 object representing the size of the tile
+   * @return vec2 of the tile size
+   */
   cinder::ivec2 GetTileVec() const override;
-  int GetRent() const;
-  int GetHouseCost() const;
+  
+  /**
+   * Gets the rent of the property based on number of that group owned,
+   * number of buildngs (for streets), and/or number on the dice (for utilities)
+   * @param die_one The value of the first die
+   * @param die_two The value of the second die
+   * @return Rent on the property
+   */
+  int GetRent(size_t die_one, size_t die_two) const;
+  
+  
+  /**
+   * Gets the cost of one house/hotel (the cost of a hotel is the same as a
+   * house)
+   * @return The cost of one house. Returns 0 if on a property where houses
+   * cannot be bought (railroads and utilities)
+   */
+  size_t GetHouseCost() const;
+  
+  /**
+   * Allows a house to be purchased if possible
+   * @return If the house was able to be purchased
+   */
   bool BuyHouse();
   int GetNumHouses() const;
+  
+  /**
+   * Gets the color of the property (applicable for street tiles only; can be
+   * called on other tiles but the color returned will be black)
+   * @return Color object representing the color of the property to put at
+   * the top of the tile. Return type CANNOT be const reference!
+   */
   Color GetColor() const;
   
-  void SetDice(int one, int two);
-  void SetOwnerId(int owner);
+  /**
+   * Allows a player to purchase this property
+   * @param owner_id The id of the player who bought the property
+   */
+  void BuyProperty(int owner_id);
+  
+  /**
+   * Gets the id of the owner
+   * @return the owner's id. Returns -1 if there is no owner.
+   */
   int GetOwnerId();
 
 private:
   int rent_[6];
   int rgb_[3];
-  const int house_cost_;
+  const size_t house_cost_;
   const int mortgage_ = price_ / 2;
+  const size_t max_num_houses_ = 5;
   
-  
-  int num_houses_;
+  size_t num_houses_;
   int owner_ = -1;
-  int die_one;
-  int die_two;
+  size_t die_one;
+  size_t die_two;
   
 };
 }

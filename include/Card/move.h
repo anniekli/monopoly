@@ -18,15 +18,17 @@ public:
    * @param action CardAction enum representing the action of the card
    * @param destination
    */
-  Move(std::string title, CardAction action, int destination)
-  : Card{title, action}, destination_{destination} {};
+  Move(std::string title, std::string type, CardAction action, int destination)
+  : Card{title, type, action}, destination_{destination} {};
   
-  Move(std::string title, CardAction action, std::string subaction)
-          : Card{title, action}, subaction_{subaction} {};
+  Move(std::string title, std::string type, CardAction action, std::string
+  subaction)
+          : Card{title, type, action}, subaction_{subaction} {};
   
-  Move(std::string title, CardAction action, std::string group, int
-  rent_multiplier)
-  : Card{title, action},  group_{group}, rent_multiplier_{rent_multiplier} {};
+  Move(std::string title, std::string type, CardAction action, std::string
+  group, int rent_multiplier)
+  : Card{title, type, action},  group_{group}, rent_multiplier_{rent_multiplier}
+  {};
   
   /**
    * Performs the action of a card that moves the player.

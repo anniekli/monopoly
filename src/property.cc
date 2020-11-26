@@ -7,9 +7,8 @@
 #include <cinder/Rect.h>
 #include <cinder/app/AppBase.h>
 
-
 namespace monopoly {
-  int Property::GetRent() const {
+  int Property::GetRent(size_t die_one, size_t die_two) const {
     int num_owned = 0;
 
     // rent for railroads and utilities depend on number owned
@@ -17,7 +16,7 @@ namespace monopoly {
     // until at least one of the properties is owned
     if (group_ == g_railroad) {
       for (auto& railroad : Board::railroad_tiles_) {
-        if (railroad->owner_ == owner_) {
+        if (railroad->GetOwnerId() == owner_) {
           num_owned++;
         }
       }
@@ -25,13 +24,11 @@ namespace monopoly {
 
     } else if (group_ == g_utility) {
       for (auto& utility : Board::utility_tiles_) {
-        if (utility->owner_ == owner_) {
+        if (utility->GetOwnerId() == owner_) {
           num_owned++;
         }
       }
-
-      // rent for utilities also depends on dice rolls, so be sure to set the
-      // dice before getting rent!
+      // rent for utilities also depends on dice rolls
       return rent_[num_owned - 1] * (die_one + die_two);
     }
     
@@ -41,7 +38,7 @@ namespace monopoly {
   
   bool Property::BuyHouse() {
     if (group_ != g_railroad && group_ != g_utility) {
-      if (num_houses_ > 5) {
+      if (num_houses_ < 5) {
         num_houses_ += 1;
         return true;
       }
@@ -97,8 +94,8 @@ namespace monopoly {
     return size;
   }
   
-  void Property::SetOwnerId(int owner) {
-    owner_ = owner;
+  void Property::BuyProperty(int owner_id) {
+    owner_ = owner_id;
   }
   
   int Property::GetOwnerId() {
@@ -112,7 +109,7 @@ namespace monopoly {
     return -1;
   }
   
-  int Property::GetHouseCost() const {
+  size_t Property::GetHouseCost() const {
     return house_cost_;
   }
   
@@ -127,11 +124,6 @@ namespace monopoly {
       }
     }
     return Color(rgb_temp[0], rgb_temp[1], rgb_temp[2]);
-  }
-  
-  void Property::SetDice(int one, int two) {
-    die_one = one;
-    die_two = two;
   }
   
 }
