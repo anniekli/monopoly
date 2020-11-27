@@ -15,7 +15,7 @@
         160,
         250
       ],
-      "housecost": 50,
+      "buildingcost": 50,
       "group": "purple",
       "rgb": [75, 0, 130]
     },
@@ -34,7 +34,7 @@
         320,
         450
       ],
-      "housecost": 50,
+      "buildingcost": 50,
       "group": "purple",
       "rgb": [75, 0, 130]
     },
@@ -64,7 +64,7 @@
         400,
         550
       ],
-      "housecost": 50,
+      "buildingcost": 50,
       "group": "lightblue",
       "rgb": [135, 206, 250]
     },
@@ -83,7 +83,7 @@
         400,
         550
       ],
-      "housecost": 50,
+      "buildingcost": 50,
       "group": "lightblue",
       "rgb": [135, 206, 250]
     },
@@ -98,7 +98,7 @@
         450,
         600
       ],
-      "housecost": 50,
+      "buildingcost": 50,
       "group": "lightblue",
       "rgb": [135, 206, 250]
     },
@@ -117,7 +117,7 @@
         625,
         750
       ],
-      "housecost": 100,
+      "buildingcost": 100,
       "group": "pink",
       "rgb": [255, 20, 147]
     },
@@ -141,7 +141,7 @@
         625,
         750
       ],
-      "housecost": 100,
+      "buildingcost": 100,
       "group": "pink",
       "rgb": [255, 20, 147]
     },
@@ -156,7 +156,7 @@
         700,
         900
       ],
-      "housecost": 100,
+      "buildingcost": 100,
       "group": "pink",
       "rgb": [255, 20, 147]
     },
@@ -182,7 +182,7 @@
         750,
         950
       ],
-      "housecost": 100,
+      "buildingcost": 100,
       "group": "orange",
       "rgb": [255, 165, 0]
     },
@@ -201,7 +201,7 @@
         750,
         950
       ],
-      "housecost": 100,
+      "buildingcost": 100,
       "group": "orange",
       "rgb": [255, 165, 0]
     },
@@ -216,7 +216,7 @@
         800,
         1000
       ],
-      "housecost": 100,
+      "buildingcost": 100,
       "group": "orange",
       "rgb": [255, 165, 0]
     },
@@ -235,7 +235,7 @@
         875,
         1050
       ],
-      "housecost": 150,
+      "buildingcost": 150,
       "group": "red",
       "rgb": [255, 0, 0]
     },
@@ -254,7 +254,7 @@
         875,
         1050
       ],
-      "housecost": 150,
+      "buildingcost": 150,
       "group": "red",
       "rgb": [255, 0, 0]
     },
@@ -269,7 +269,7 @@
         925,
         1100
       ],
-      "housecost": 150,
+      "buildingcost": 150,
       "group": "red",
       "rgb": [255, 0, 0]
     },    {
@@ -294,7 +294,7 @@
         975,
         1150
       ],
-      "housecost": 150,
+      "buildingcost": 150,
       "group": "yellow",
       "rgb": [255, 255, 0]
     },
@@ -309,7 +309,7 @@
         975,
         1150
       ],
-      "housecost": 150,
+      "buildingcost": 150,
       "group": "yellow",
       "rgb": [255, 255, 0]
     },
@@ -333,7 +333,7 @@
         1025,
         1200
       ],
-      "housecost": 150,
+      "buildingcost": 150,
       "group": "yellow",
       "rgb": [255, 255, 0]
     },
@@ -352,7 +352,7 @@
         1100,
         1275
       ],
-      "housecost": 200,
+      "buildingcost": 200,
       "group": "green",
       "rgb": [0, 128, 0]
     },
@@ -367,7 +367,7 @@
         1100,
         1275
       ],
-      "housecost": 200,
+      "buildingcost": 200,
       "group": "green",
       "rgb": [0, 128, 0]
     },
@@ -386,7 +386,7 @@
         1200,
         1400
       ],
-      "housecost": 200,
+      "buildingcost": 200,
       "group": "green",
       "rgb": [0, 128, 0]
     },
@@ -416,7 +416,7 @@
         1300,
         1500
       ],
-      "housecost": 200,
+      "buildingcost": 200,
       "group": "darkblue",
       "rgb": [0, 0, 139]
     },
@@ -435,7 +435,7 @@
         1700,
         2000
       ],
-      "housecost": 200,
+      "buildingcost": 200,
       "group": "darkblue",
       "rgb": [0, 0, 139]
     }

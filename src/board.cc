@@ -58,7 +58,7 @@ namespace monopoly {
           my_tile = new Property(tile["name"], index,
                                  tile["price"], rent, 0, tile["group"], rgb);
       
-          Property *property = dynamic_cast<Property *>(my_tile);
+          Property *property = dynamic_cast<Property*>(my_tile);
           if (tile["group"] == g_railroad) {
             railroad_tiles_.push_back(property);
           } else {
@@ -73,7 +73,7 @@ namespace monopoly {
           }
       
           my_tile = new Property(tile["name"], index,
-                                 tile["price"], rent, tile["housecost"],
+                                 tile["price"], rent, tile["buildingcost"],
                                  tile["group"], rgb);
       
           Property *property = dynamic_cast<Property *>(my_tile);
@@ -139,15 +139,45 @@ namespace monopoly {
   }
   
   Card* Board::DrawChestCard() {
-    Card *card = community_chest_cards_.back();
-    community_chest_cards_.pop_back();
+    if (community_chest_cards_.empty()) {
+      return NULL;
+    }
+    Card *card = community_chest_cards_.front();
+    community_chest_cards_.erase(community_chest_cards_.begin(),
+            community_chest_cards_.begin()++);
+    
+    if (card->GetTitle().rfind("Get Out of Jail Free", 0) == 0) {
+      // store the card in a member variable to be added back LATER!
+      get_out_jail_chest_card_ = card;
+    } else {
+      // otherwise, add the card to the back of the deck
+      community_chest_cards_.push_back(card);
+    }
     return card;
   }
   
   Card* Board::DrawChanceCard() {
-    Card *card = chance_cards_.back();
-    chance_cards_.pop_back();
+    if (chance_cards_.empty()) {
+      return NULL;
+    }
+    Card *card = chance_cards_.front();
+    chance_cards_.erase(chance_cards_.begin(), chance_cards_.begin()++);
+    if (card->GetTitle().rfind("Get Out of Jail Free", 0) == 0) {
+      // store the card in a member variable to be added back LATER!
+      get_out_jail_chance_card_ = card;
+    } else {
+      // otherwise, add the card to the back of the deck
+      chance_cards_.push_back(card);
+    }
     return card;
+  }
+  
+  void Board::ReplaceChestGetOutJail() {
+    community_chest_cards_.push_back(get_out_jail_chest_card_);
+  }
+  
+  void Board::ReplaceChanceGetOutJail() {
+    chance_cards_.push_back(get_out_jail_chance_card_);
   }
   
   const std::vector<Tile *> & Board::GetTiles() const {
@@ -169,5 +199,4 @@ namespace monopoly {
   const std::vector<Property*>& Board::GetUtilities() const {
     return utility_tiles_;
   }
-  
 }

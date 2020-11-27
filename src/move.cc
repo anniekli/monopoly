@@ -7,7 +7,8 @@
 
 namespace monopoly {
   void Move::PerformAction(std::vector<Player> &players,
-          const std::vector<Tile *> &tiles, int player_id) const {
+          const std::vector<Tile *> &tiles, int player_id, size_t die_one,
+          size_t die_two) const {
     Player player;
     for (Player user : players) {
       if (user.GetId() == player_id) {
@@ -25,7 +26,19 @@ namespace monopoly {
       for (size_t i = 0; i < num_tiles_; i++) {
         if (tiles.at(curr_pos % num_tiles_)->GetGroup() == group_) {
           player.SetPosition(curr_pos);
-          // TODO: implement rent-multiplier part of card
+
+          // Implement the rent-multiplier aspect of the card
+          Property* property = dynamic_cast<Property*>(tiles.at
+                  (curr_pos));
+          if (property->GetOwnerId() != -1 && property->GetOwnerId() !=
+          player_id) {
+            player.AddMoney(- (property->GetRent(die_one, die_two) *
+            rent_multiplier_));
+          
+          } else {
+            // TODO: allow player to purchase the property(likely from
+            //  elsewhere in the code)
+          }
   
         } else {
           curr_pos++;

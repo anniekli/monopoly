@@ -37,11 +37,19 @@ namespace monopoly {
   }
   
   bool Property::BuyHouse() {
-    if (group_ != g_railroad && group_ != g_utility) {
-      if (num_houses_ < 5) {
-        num_houses_ += 1;
-        return true;
-      }
+    if (group_ != g_railroad && group_ != g_utility
+      && num_houses_ < max_num_houses_) {
+      num_houses_++;
+      return true;
+    }
+    return false;
+  }
+  
+  bool Property::BuyHotel() {
+    if (group_ != g_railroad && group_ != g_utility
+      && num_houses_ == max_num_houses_) {
+      num_hotels_++;
+      return true;
     }
     return false;
   }
@@ -109,8 +117,15 @@ namespace monopoly {
     return -1;
   }
   
-  size_t Property::GetHouseCost() const {
-    return house_cost_;
+  int Property::GetNumHotels() const {
+    if (group_ != g_utility && group_ != g_railroad) {
+      return num_hotels_;
+    }
+    return -1;
+  }
+  
+  size_t Property::GetBuildingCost() const {
+    return building_cost_;
   }
   
   Color Property::GetColor() const {

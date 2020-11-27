@@ -41,16 +41,18 @@ public:
   void DrawTiles() const;
   
   /**
-   * Draws (as in picks) the next Chance card from the deck and
-   * removes it. This method uses pop_back() for O(1) time complexity.
-   * @return Chance card that was drawn
+   * Draws (as in picks) the next Chance card from the top of the deck and
+   * puts it at the bottom (per official rules) unless it is a "Get Out of
+   * Jail Free" card. Then, it is not replaced until the card is used.
+   * @return Chance card that was drawn. Return NULL if deck is empty.
    */
   Card* DrawChanceCard();
   
   /**
-   * Draws (as in picks) the next Community Chest card from the deck and
-   * removes it. This method uses pop_back() for O(1) time complexity.
-   * @return Community Chest card that was drawn
+   * Draws (as in picks) the next Community Chest card from the top of the deck and
+   * puts it at the bottom (per official rules) unless it is a "Get Out of
+   * Jail Free" card. Then, it is not replaced until the card is used.
+   * @return Community Chest card that was drawn. Return NULL if deck is empty.
    */
   Card* DrawChestCard();
   
@@ -64,6 +66,18 @@ public:
    * @return A non-const pointer to the Tile object
    */
   Tile* GetTileAtPos(int position) const;
+  
+  /**
+   * Replaces the "Get Out Of Jail" card to the back of the Chance deck after
+   * it is used.
+   */
+  void ReplaceChanceGetOutJail();
+  
+  /**
+   * Replaces the "Get Out Of Jail" card to the back of the Community Chest
+   * deck after it is used.
+   */
+  void ReplaceChestGetOutJail();
   const std::vector<Property*>& GetStreets() const;
   const std::vector<Property*>& GetRailroads() const;
   const std::vector<Property*>& GetUtilities() const;
@@ -95,6 +109,11 @@ private:
   
   std::vector<Card*> chance_cards_;
   std::vector<Card*> community_chest_cards_;
+  
+  // store "Get Out Of Jail Free" cards because when they are drawn, they
+  // don't get added back until they are used.
+  Card* get_out_jail_chest_card_;
+  Card* get_out_jail_chance_card_;
 };
 }
 

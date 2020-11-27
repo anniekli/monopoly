@@ -46,7 +46,8 @@ public:
    */
   virtual void PerformAction(std::vector<Player> &players,
                              const std::vector<Tile *> &tiles,
-                             int player_id) const {};
+                             int player_id, size_t die_one, size_t die_two)
+                             const {};
 
 protected:
   std::string title_;

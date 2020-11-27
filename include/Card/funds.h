@@ -20,7 +20,8 @@ public:
   : Card{title, type, action}, house_charge{house}, hotel_charge{hotel} {};
   
   void PerformAction(std::vector<Player> &players,
-          const std::vector<Tile *> &tiles, int player_id) const override;
+          const std::vector<Tile *> &tiles, int player_id, size_t die_one,
+          size_t die_two) const override;
   
 private:
   int amount_;

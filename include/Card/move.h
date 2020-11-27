@@ -38,7 +38,8 @@ public:
    * @param player_id The id of the current player
    */
   void PerformAction(std::vector<Player> &players,
-          const std::vector<Tile *> &tiles, int player_id) const override;
+          const std::vector<Tile *> &tiles, int player_id, size_t die_one,
+          size_t die_two) const override;
   
 private:
   int destination_;

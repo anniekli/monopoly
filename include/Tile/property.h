@@ -16,9 +16,9 @@ using cinder::Color;
 class Property: public Tile {
 public:
   Property(std::string name, int position, int price, int rent[], int
-  house_cost, std::string group, int rgb[])
-          : Tile{name, position, price, group}, house_cost_(house_cost),
-          num_houses_{0} {
+  building_cost, std::string group, int rgb[])
+          : Tile{name, position, price, group}, building_cost_(building_cost),
+            num_houses_{0} {
     
     // manually copy in the arrays
     for (int i = 0; i < sizeof(rent); i++) {
@@ -51,21 +51,28 @@ public:
    */
   int GetRent(size_t die_one, size_t die_two) const;
   
-  
   /**
    * Gets the cost of one house/hotel (the cost of a hotel is the same as a
    * house)
-   * @return The cost of one house. Returns 0 if on a property where houses
+   * @return The cost of one building. Returns 0 if on a property where houses
    * cannot be bought (railroads and utilities)
    */
-  size_t GetHouseCost() const;
+  size_t GetBuildingCost() const;
   
   /**
    * Allows a house to be purchased if possible
    * @return If the house was able to be purchased
    */
   bool BuyHouse();
+  
+  /**
+   * Allows a hotel to be purchased if there are 4 houses on the property. It
+   * automatically trades all the houses for one hotel.
+   * @return If the hotel was able to be purchased
+   */
+  bool BuyHotel();
   int GetNumHouses() const;
+  int GetNumHotels() const;
   
   /**
    * Gets the color of the property (applicable for street tiles only; can be
@@ -90,11 +97,12 @@ public:
 private:
   int rent_[6];
   int rgb_[3];
-  const size_t house_cost_;
+  const size_t building_cost_;
   const int mortgage_ = price_ / 2;
-  const size_t max_num_houses_ = 5;
+  const size_t max_num_houses_ = 4;
   
   size_t num_houses_;
+  size_t num_hotels_;
   int owner_ = -1;
   size_t die_one;
   size_t die_two;

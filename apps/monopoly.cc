@@ -156,7 +156,7 @@ void Monopoly::draw() {
     
     case GameState::kPlayerTurn :
       if (!is_player_position_updated_) {
-      // animate the player moving
+      // TODO: animate the player moving
       
       } else if (is_player_position_updated_) {
         if (board_.GetTileAtPos(player_.GetPosition())->GetGroup() != g_special) {
@@ -331,19 +331,21 @@ void Monopoly::DrawUpdateCurrentPlayerPosition() {
 
 void Monopoly::DrawCard() {
   std::string chance = "chance";
-  std::string chest = "communitychest";
   Rectf card_rectf = {getWindowCenter().x - (tile_size_ * 3/2),
                       getWindowCenter().y - (tile_size_ * 3/4),
                       getWindowCenter().x + (tile_size_ * 3/2),
                       getWindowCenter().y + (tile_size_ * 3/4)};
+  
+  // the size of the textbox is slightly smaller than the rectf to allow margins
   cinder::ivec2 size = {tile_size_ * 2, tile_size_};
 
   cinder::gl::color(current_card_->GetColor());
   cinder::gl::drawSolidRect(card_rectf);
   cinder::gl::color(Color::black());
   cinder::gl::drawStrokedRect(card_rectf);
+  
   std::stringstream type;
-  if (current_card_->GetType() == "chance") {
+  if (current_card_->GetType() == chance) {
     type << g_chance;
   } else {
     type << g_chest;
